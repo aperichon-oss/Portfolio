@@ -14,7 +14,6 @@ export function PortfolioAnalytics() {
     if (pathname === "/analytics" || pathname.startsWith("/analytics/")) return
 
     const payload = {
-      type: "pageview" as const,
       path: pathname,
       language,
       referrer: document.referrer || "",

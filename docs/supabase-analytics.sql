@@ -17,7 +17,7 @@ on public.portfolio_analytics
 for insert
 to anon
 with check (
-  type = 'pageview'
+  type in ('pageview', 'chatbot_open', 'chatbot_message')
   and char_length(path) <= 200
   and char_length(language) <= 10
   and char_length(referrer) <= 300

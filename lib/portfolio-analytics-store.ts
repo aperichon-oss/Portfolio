@@ -1,6 +1,6 @@
 export type PortfolioAnalyticsEvent = {
   id: string
-  type: "pageview"
+  type: "pageview" | "chatbot_open" | "chatbot_message"
   path: string
   language: string
   referrer: string
@@ -13,8 +13,12 @@ export type PortfolioAnalyticsEvent = {
 
 export type PortfolioAnalyticsSummary = {
   total: number
+  pageviews: number
+  chatbotOpens: number
+  chatbotMessages: number
   byPath: Record<string, number>
   byLanguage: Record<string, number>
+  byType: Record<string, number>
   recent: PortfolioAnalyticsEvent[]
 }
 
@@ -61,7 +65,9 @@ function writeLocalEvents(events: PortfolioAnalyticsEvent[]) {
 function mapSupabaseEvent(row: Record<string, unknown>): PortfolioAnalyticsEvent {
   return {
     id: String(row.id || crypto.randomUUID()),
-    type: "pageview",
+    type: ["pageview", "chatbot_open", "chatbot_message"].includes(String(row.type))
+      ? (String(row.type) as PortfolioAnalyticsEvent["type"])
+      : "pageview",
     path: String(row.path || "/"),
     language: String(row.language || "unknown"),
     referrer: String(row.referrer || ""),
@@ -74,15 +80,21 @@ function mapSupabaseEvent(row: Record<string, unknown>): PortfolioAnalyticsEvent
 }
 
 export function buildAnalyticsSummary(events: PortfolioAnalyticsEvent[]): PortfolioAnalyticsSummary {
+  const pageviews = events.filter((event) => event.type === "pageview")
+
   return {
     total: events.length,
-    byPath: aggregateBy(events, (event) => event.path),
+    pageviews: pageviews.length,
+    chatbotOpens: events.filter((event) => event.type === "chatbot_open").length,
+    chatbotMessages: events.filter((event) => event.type === "chatbot_message").length,
+    byPath: aggregateBy(pageviews, (event) => event.path),
     byLanguage: aggregateBy(events, (event) => event.language),
+    byType: aggregateBy(events, (event) => event.type),
     recent: events.slice(-25).reverse(),
   }
 }
 
-export async function trackPortfolioPageview(event: Omit<PortfolioAnalyticsEvent, "id" | "createdAt">) {
+export async function trackPortfolioAnalyticsEvent(event: Omit<PortfolioAnalyticsEvent, "id" | "createdAt">) {
   const payload: PortfolioAnalyticsEvent = {
     ...event,
     id: crypto.randomUUID(),
@@ -119,6 +131,13 @@ export async function trackPortfolioPageview(event: Omit<PortfolioAnalyticsEvent
   const events = readLocalEvents()
   events.push(payload)
   writeLocalEvents(events)
+}
+
+export async function trackPortfolioPageview(event: Omit<PortfolioAnalyticsEvent, "id" | "createdAt" | "type">) {
+  return trackPortfolioAnalyticsEvent({
+    ...event,
+    type: "pageview",
+  })
 }
 
 export async function loadPortfolioAnalyticsEvents() {

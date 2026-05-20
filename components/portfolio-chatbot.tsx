@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { Send, X } from "lucide-react"
 import { useLanguage } from "@/lib/language-context"
 import { assetPath } from "@/lib/asset-path"
+import { trackPortfolioAnalyticsEvent } from "@/lib/portfolio-analytics-store"
 
 type Message = {
   role: "user" | "bot"
@@ -98,6 +99,21 @@ export function PortfolioChatbot() {
     return copy.fallback
   }
 
+  const trackChatbotUsage = (type: "chatbot_open" | "chatbot_message") => {
+    trackPortfolioAnalyticsEvent({
+      type,
+      path: window.location.pathname || "/",
+      language,
+      referrer: document.referrer || "",
+      viewport: {
+        width: window.innerWidth,
+        height: window.innerHeight,
+      },
+    }).catch(() => {
+      // Analytics must stay silent if storage is unavailable.
+    })
+  }
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const question = input.trim()
@@ -108,6 +124,7 @@ export function PortfolioChatbot() {
       { role: "user", text: question },
       { role: "bot", text: answerQuestion(question) },
     ])
+    trackChatbotUsage("chatbot_message")
     setInput("")
   }
 
@@ -179,7 +196,13 @@ export function PortfolioChatbot() {
 
       <button
         type="button"
-        onClick={() => setOpen((current) => !current)}
+        onClick={() => {
+          setOpen((current) => {
+            const next = !current
+            if (next) trackChatbotUsage("chatbot_open")
+            return next
+          })
+        }}
         className="flex h-14 w-14 items-center justify-center rounded-full border border-primary/25 bg-background shadow-xl shadow-black/30 transition hover:-translate-y-0.5 hover:border-primary/50"
         aria-label={open ? (language === "fr" ? "Fermer le chatbot" : "Close chatbot") : copy.title}
       >
