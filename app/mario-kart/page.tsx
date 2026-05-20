@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { useLanguage } from "@/lib/language-context"
+import { assetPath } from "@/lib/asset-path"
 import { 
   ArrowLeft, 
   ChevronRight, 
@@ -175,7 +176,7 @@ export default function MarioKartPage() {
 
             <div className="flex items-center gap-4 mb-3">
               <Image 
-                src="/images/mario-icon.png" 
+                src={assetPath("/images/mario-icon.png")} 
                 alt="Mario" 
                 width={40} 
                 height={40}
@@ -396,7 +397,7 @@ export default function MarioKartPage() {
                 >
                   <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-mario-green/20 mb-6">
                     <Image 
-                      src="/images/mario-icon.png" 
+                      src={assetPath("/images/mario-icon.png")} 
                       alt="Mario" 
                       width={48} 
                       height={48}
@@ -444,7 +445,7 @@ export default function MarioKartPage() {
               onClick={(event) => event.stopPropagation()}
             >
                 <img
-                  src="/images/easter-eggs/personnage-easteregg.png"
+                  src={assetPath("/images/easter-eggs/personnage-easteregg.png")}
                   alt=""
                   aria-hidden="true"
                   className="pointer-events-none absolute bottom-full right-3 z-10 w-36 translate-y-[15px]"
@@ -525,10 +526,10 @@ function DemoContent({ t, onContinue }: { t: (key: string) => string; onContinue
       {/* Video */}
       <div className="relative aspect-video mb-4 rounded-lg overflow-hidden bg-black">
         <video 
-          src="/videos/mario-kart-demo.mp4" 
+          src={assetPath("/videos/mario-kart-demo.mp4")} 
           controls 
           className="w-full h-full object-contain"
-          poster="/images/mario-icon.png"
+          poster={assetPath("/images/mario-icon.png")}
         >
           Your browser does not support the video tag.
         </video>

@@ -14,6 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { useLanguage } from "@/lib/language-context"
+import { assetPath } from "@/lib/asset-path"
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -66,7 +67,7 @@ export function Header() {
           <Link href="/" className="flex items-center gap-2">
             <motion.div className="w-12 h-12 rounded-full overflow-hidden border-3 border-primary/30">
               <Image
-                src="/images/profile.jpg"
+                src={assetPath("/images/profile.jpg")}
                 alt="Aurelie Perichon"
                 width={128}
                 height={128}
@@ -108,7 +109,7 @@ export function Header() {
                     <Link href={item.href} className="flex items-center gap-2 cursor-pointer">
                       {item.icon ? (
                         <Image
-                          src={item.icon}
+                          src={assetPath(item.icon)}
                           alt={item.label}
                           width={20}
                           height={20}
@@ -275,7 +276,7 @@ export function Header() {
                           >
                             {item.icon ? (
                               <Image
-                                src={item.icon}
+                                src={assetPath(item.icon)}
                                 alt={item.label}
                                 width={20}
                                 height={20}

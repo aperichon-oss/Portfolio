@@ -5,6 +5,9 @@ import { PortfolioChatbot } from '@/components/portfolio-chatbot'
 import { PortfolioAnalytics } from '@/components/portfolio-analytics'
 import './globals.css'
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+const faviconPath = `${basePath}/favicon.png`
+
 const inter = Inter({ 
   subsets: ["latin"],
   variable: '--font-inter'
@@ -21,9 +24,9 @@ export const metadata: Metadata = {
   keywords: ['data science', 'AI', 'machine learning', 'portfolio', 'python', 'web development'],
   authors: [{ name: 'Aurelie Perichon' }],
   icons: {
-    icon: '/favicon.png',
-    shortcut: '/favicon.png',
-    apple: '/favicon.png',
+    icon: faviconPath,
+    shortcut: faviconPath,
+    apple: faviconPath,
   },
 }
 

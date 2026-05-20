@@ -4,6 +4,7 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowRight, ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { assetPath } from "@/lib/asset-path"
 
 interface ProjectCardProps {
   title: string
@@ -36,7 +37,7 @@ export function ProjectCard({
       <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300 ${gradient || 'bg-gradient-to-br from-primary to-accent'}`} />
       {characterImage && (
         <img
-          src={characterImage}
+          src={assetPath(characterImage)}
           alt={characterAlt}
           aria-hidden={!characterAlt}
           className="pointer-events-none absolute right-4 top-4 z-0 h-20 w-32 object-contain object-right-top opacity-100 transition-transform duration-300 group-hover:scale-105 sm:h-24 sm:w-40"

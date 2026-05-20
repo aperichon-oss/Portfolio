@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card } from "@/components/ui/card"
 import { useLanguage } from "@/lib/language-context"
+import { assetPath } from "@/lib/asset-path"
 import { 
   Play,
   RotateCcw,
@@ -713,7 +714,7 @@ export default function ZigZagPage() {
             className="flex items-center gap-4 mb-4"
           >
             <Image 
-              src="/images/zigzag-logo.webp" 
+              src={assetPath("/images/zigzag-logo.webp")} 
               alt="ZigZag" 
               width={48} 
               height={48}
@@ -1154,7 +1155,7 @@ export default function ZigZagPage() {
               onClick={(event) => event.stopPropagation()}
             >
                 <img
-                  src="/images/easter-eggs/personnage-easteregg.png"
+                  src={assetPath("/images/easter-eggs/personnage-easteregg.png")}
                   alt=""
                   aria-hidden="true"
                   className="pointer-events-none absolute bottom-full right-3 z-10 w-36 translate-y-[15px]"

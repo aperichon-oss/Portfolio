@@ -9,6 +9,7 @@ import { ProjectCard } from "@/components/project-card"
 import { AnimatedBackground } from "@/components/animated-background"
 import { Button } from "@/components/ui/button"
 import { useLanguage } from "@/lib/language-context"
+import { assetPath } from "@/lib/asset-path"
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -66,7 +67,7 @@ export default function HomePage() {
     {
       title: t("project.zigzag.title"),
       tagline: t("project.zigzag.tagline"),
-      icon: <Image src="/images/zigzag-logo.webp" alt="ZigZag" width={32} height={32} className="w-10 h-10 object-contain rounded-full" />,
+      icon: <Image src={assetPath("/images/zigzag-logo.webp")} alt="ZigZag" width={32} height={32} className="w-10 h-10 object-contain rounded-full" />,
       href: "/zigzag",
       glowClass: "glow-zigzag",
       characterImage: "/images/project-characters/personnage-zigzag.png",
@@ -75,7 +76,7 @@ export default function HomePage() {
     {
       title: t("project.marioKart.title"),
       tagline: t("project.marioKart.tagline"),
-      icon: <Image src="/images/mario-icon.png" alt="Mario" width={32} height={32} className="w-10 h-10 object-contain" />,
+      icon: <Image src={assetPath("/images/mario-icon.png")} alt="Mario" width={32} height={32} className="w-10 h-10 object-contain" />,
       href: "/mario-kart",
       glowClass: "glow-mario",
       characterImage: "/images/project-characters/personnage-mario-kart.png",
@@ -126,7 +127,7 @@ export default function HomePage() {
               >
                 <span className="pointer-events-none absolute left-0 top-0 z-20">
                     <img
-                    src="/images/home/personnage-interrogatif.png"
+                    src={assetPath("/images/home/personnage-interrogatif.png")}
                       alt=""
                       aria-hidden="true"
                       className="block w-52 max-w-none origin-[23%_82%] -translate-x-[23%] -translate-y-[82%] rotate-[4deg] sm:w-64"

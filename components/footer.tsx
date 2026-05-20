@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Github, Linkedin, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useLanguage } from "@/lib/language-context"
+import { assetPath } from "@/lib/asset-path"
 
 export function Footer() {
   const { t } = useLanguage()
@@ -18,7 +19,7 @@ export function Footer() {
             <div className="flex items-center gap-2">
               <div className="w-12 h-12 rounded-full overflow-hidden border-3 border-primary/30">
                 <Image
-                  src="/images/profile.jpg"
+                  src={assetPath("/images/profile.jpg")}
                   alt="Aurelie Perichon"
                   width={128}
                   height={128}

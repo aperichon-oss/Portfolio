@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { useLanguage } from "@/lib/language-context"
+import { assetPath } from "@/lib/asset-path"
 
 // Map points for each step - positioned on real coordinates
 const mapSteps = [
@@ -53,8 +54,8 @@ const mapSteps = [
 ]
 
 const hackathonPhotos = {
-  briefing: "/images/supply-brain/briefing-problematique.jpg",
-  finalDemo: "/images/supply-brain/final-demo.jpg",
+  briefing: assetPath("/images/supply-brain/briefing-problematique.jpg"),
+  finalDemo: assetPath("/images/supply-brain/final-demo.jpg"),
 }
 
 export default function SupplyBrainPage() {
@@ -139,7 +140,7 @@ export default function SupplyBrainPage() {
   const frontendStack = ["React 19", "Vite 6", "Recharts", "Leaflet", "i18next"]
   const backendStack = ["Supabase", "Dust.tt", "OpenAI GPT-4o", "n8n"]
   const intelligenceStack = ["Agents autonomes", "NL2SQL", "Alertes temps reel", "Workflows batch", "Cartographie risque", "Score CO2"]
-  const presentationUrl = "/supply-brain-presentation.html"
+  const presentationUrl = assetPath("/supply-brain-presentation.html")
 
   const stepContents = [
     {
@@ -717,7 +718,7 @@ export default function SupplyBrainPage() {
               onClick={(event) => event.stopPropagation()}
             >
                 <img
-                  src="/images/easter-eggs/personnage-easteregg.png"
+                  src={assetPath("/images/easter-eggs/personnage-easteregg.png")}
                   alt="Easter egg character"
                   aria-hidden="true"
                   className="pointer-events-none absolute bottom-full right-3 z-10 w-36 translate-y-[15px]"
@@ -739,4 +740,4 @@ export default function SupplyBrainPage() {
     </div>
   )
 }
-const geoUrl = "/data/countries-110m.json"
+const geoUrl = assetPath("/data/countries-110m.json")

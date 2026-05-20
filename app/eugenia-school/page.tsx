@@ -9,6 +9,7 @@ import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { useLanguage } from "@/lib/language-context"
+import { assetPath } from "@/lib/asset-path"
 
 export default function EugeniaSchoolPage() {
   const { t, language } = useLanguage()
@@ -19,14 +20,14 @@ export default function EugeniaSchoolPage() {
   const steps = [
     {
       id: "facade",
-      image: "/images/eugenia/facade.png",
+      image: assetPath("/images/eugenia/facade.png"),
       title: "Eugenia School",
       subtitle: language === "fr" ? "Ecole Superieure en Data & IA" : "Higher Education in Data & AI",
       isLanding: true,
     },
     {
       id: "entrance",
-      image: "/images/eugenia/entrance.png",
+      image: assetPath("/images/eugenia/entrance.png"),
       title: language === "fr" ? "Hall d'Entree" : "Entrance Hall",
       // Black dots positions: one on left door, one on right door
       hotspots: [
@@ -47,7 +48,7 @@ export default function EugeniaSchoolPage() {
     },
     {
       id: "amphi",
-      image: "/images/eugenia/amphi.png",
+      image: assetPath("/images/eugenia/amphi.png"),
       title: language === "fr" ? "Amphitheatre" : "Amphitheater",
       // Black dot at top of stairs center
       hotspots: [
@@ -70,7 +71,7 @@ export default function EugeniaSchoolPage() {
     },
     {
       id: "amphi2",
-      image: "/images/eugenia/amphi-2.png",
+      image: assetPath("/images/eugenia/amphi-2.png"),
       title: language === "fr" ? "Etage Superieur" : "Upper Floor",
       // Black dots: one on left balcony, one on right area
       hotspots: [
@@ -91,7 +92,7 @@ export default function EugeniaSchoolPage() {
     },
     {
       id: "classroom",
-      image: "/images/eugenia/classroom.png",
+      image: assetPath("/images/eugenia/classroom.png"),
       title: language === "fr" ? "Salle de Classe" : "Classroom",
       // Black dot in bottom right
       hotspots: [],
@@ -528,7 +529,7 @@ export default function EugeniaSchoolPage() {
               onClick={(event) => event.stopPropagation()}
             >
                 <img
-                  src="/images/easter-eggs/personnage-easteregg.png"
+                  src={assetPath("/images/easter-eggs/personnage-easteregg.png")}
                   alt=""
                   aria-hidden="true"
                   className="pointer-events-none absolute bottom-full right-3 z-10 w-36 translate-y-[15px]"

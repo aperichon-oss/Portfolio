@@ -5,6 +5,7 @@ import Image from "next/image"
 import { AnimatePresence, motion } from "framer-motion"
 import { Send, X } from "lucide-react"
 import { useLanguage } from "@/lib/language-context"
+import { assetPath } from "@/lib/asset-path"
 
 type Message = {
   role: "user" | "bot"
@@ -122,7 +123,7 @@ export function PortfolioChatbot() {
           >
             <div className="flex items-center justify-between border-b border-border/70 px-4 py-3">
               <div className="flex items-center gap-2">
-                <Image src="/favicon.png" alt="" width={28} height={28} className="h-7 w-7 rounded-full object-cover" />
+                <Image src={assetPath("/favicon.png")} alt="" width={28} height={28} className="h-7 w-7 rounded-full object-cover" />
                 <p className="text-sm font-semibold text-foreground">{copy.title}</p>
               </div>
               <button
@@ -182,7 +183,7 @@ export function PortfolioChatbot() {
         className="flex h-14 w-14 items-center justify-center rounded-full border border-primary/25 bg-background shadow-xl shadow-black/30 transition hover:-translate-y-0.5 hover:border-primary/50"
         aria-label={open ? (language === "fr" ? "Fermer le chatbot" : "Close chatbot") : copy.title}
       >
-        <Image src="/favicon.png" alt="" width={44} height={44} className="h-11 w-11 rounded-full object-cover" priority={false} />
+        <Image src={assetPath("/favicon.png")} alt="" width={44} height={44} className="h-11 w-11 rounded-full object-cover" priority={false} />
       </button>
     </div>
   )

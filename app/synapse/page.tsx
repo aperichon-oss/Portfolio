@@ -8,6 +8,7 @@ import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { useLanguage } from "@/lib/language-context"
+import { assetPath } from "@/lib/asset-path"
 import { 
   Brain,
   Search,
@@ -267,7 +268,7 @@ export default function SynapsePage() {
           </div>
           <div className="relative aspect-video overflow-hidden rounded-lg border border-amber-300/60 bg-black shadow-inner">
             <video
-              src="/videos/synapse-demo.mp4"
+              src={assetPath("/videos/synapse-demo.mp4")}
               controls
               preload="metadata"
               className="h-full w-full object-contain"
@@ -600,7 +601,7 @@ export default function SynapsePage() {
                       }}
                     >
                       <img 
-                        src="/images/synapse/book-cover.png" 
+                        src={assetPath("/images/synapse/book-cover.png")} 
                         alt="Synapse Book Cover"
                         className="w-full h-full object-cover"
                       />
@@ -658,7 +659,7 @@ export default function SynapsePage() {
                     className="w-72 h-[400px] rounded-r-lg rounded-l-sm relative overflow-hidden"
                   >
                     <img 
-                      src="/images/synapse/book-cover.png" 
+                      src={assetPath("/images/synapse/book-cover.png")} 
                       alt="Synapse Book Cover"
                       className="w-full h-full object-cover"
                     />
@@ -702,7 +703,7 @@ export default function SynapsePage() {
                     className="relative aspect-[7/4.5] w-[min(92vw,700px)]"
                   >
                     <img 
-                      src="/images/synapse/book-pages.png" 
+                      src={assetPath("/images/synapse/book-pages.png")} 
                       alt="Synapse Book Pages"
                       className="w-full h-full object-contain"
                     />
@@ -736,7 +737,7 @@ export default function SynapsePage() {
                   {/* Book pages background */}
                   <div className="relative aspect-[7/4.5] w-[min(98vw,960px,calc((100vh-11rem)*1.55))]">
                     <img 
-                      src="/images/synapse/book-pages.png" 
+                      src={assetPath("/images/synapse/book-pages.png")} 
                       alt="Synapse Book Pages"
                       className="absolute inset-0 w-full h-full object-contain"
                     />
@@ -857,7 +858,7 @@ export default function SynapsePage() {
               onClick={(event) => event.stopPropagation()}
             >
                 <img
-                  src="/images/easter-eggs/personnage-easteregg.png"
+                  src={assetPath("/images/easter-eggs/personnage-easteregg.png")}
                   alt=""
                   aria-hidden="true"
                   className="pointer-events-none absolute bottom-full right-3 z-10 w-36 translate-y-[15px]"
