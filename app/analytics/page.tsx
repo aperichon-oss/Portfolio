@@ -161,6 +161,13 @@ function formatChartDay(day: string, locale: string) {
   })
 }
 
+function getXAxisInterval(period: string) {
+  if (period === "7") return 0
+  if (period === "30") return 2
+  if (period === "90") return 6
+  return "preserveStartEnd" as const
+}
+
 function buildPageTimeline(events: PortfolioAnalyticsEvent[], period: string, locale: string) {
   const pageviews = events.filter((event) => event.type === "pageview")
   const start = getPeriodStart(period)
@@ -368,9 +375,20 @@ export default function AnalyticsPage() {
               {chartData.pageNames.length ? (
                 <div className="h-80 w-full">
                   <ResponsiveContainer width="100%" height="100%">
-                    <LineChart data={chartData.rows} margin={{ top: 8, right: 18, left: -20, bottom: 0 }}>
+                    <LineChart data={chartData.rows} margin={{ top: 8, right: 18, left: -20, bottom: 18 }}>
                       <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.35} />
-                      <XAxis dataKey="label" stroke="hsl(var(--muted-foreground))" fontSize={12} tickLine={false} axisLine={false} />
+                      <XAxis
+                        dataKey="label"
+                        stroke="hsl(var(--muted-foreground))"
+                        fontSize={12}
+                        tickLine={false}
+                        axisLine={false}
+                        interval={getXAxisInterval(period)}
+                        minTickGap={0}
+                        angle={period === "7" ? 0 : -25}
+                        textAnchor={period === "7" ? "middle" : "end"}
+                        height={period === "7" ? 34 : 52}
+                      />
                       <YAxis stroke="hsl(var(--muted-foreground))" fontSize={12} tickLine={false} axisLine={false} allowDecimals={false} />
                       <Tooltip
                         contentStyle={{

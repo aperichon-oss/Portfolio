@@ -111,7 +111,7 @@ export async function trackPortfolioAnalyticsEvent(event: Omit<PortfolioAnalytic
   const supabase = getSupabaseConfig()
 
   if (supabase) {
-    await fetch(supabase.endpoint, {
+    const response = await fetch(supabase.endpoint, {
       method: "POST",
       headers: {
         apikey: supabase.anonKey,
@@ -132,6 +132,10 @@ export async function trackPortfolioAnalyticsEvent(event: Omit<PortfolioAnalytic
       }),
       keepalive: true,
     })
+
+    if (!response.ok) {
+      throw new Error("analytics-track-failed")
+    }
 
     return
   }
