@@ -4,6 +4,9 @@ export type PortfolioAnalyticsEvent = {
   path: string
   language: string
   referrer: string
+  metadata?: {
+    question?: string
+  }
   viewport?: {
     width?: number
     height?: number
@@ -71,6 +74,10 @@ function mapSupabaseEvent(row: Record<string, unknown>): PortfolioAnalyticsEvent
     path: String(row.path || "/"),
     language: String(row.language || "unknown"),
     referrer: String(row.referrer || ""),
+    metadata:
+      row.metadata && typeof row.metadata === "object"
+        ? (row.metadata as PortfolioAnalyticsEvent["metadata"])
+        : undefined,
     viewport: {
       width: typeof row.viewport_width === "number" ? row.viewport_width : undefined,
       height: typeof row.viewport_height === "number" ? row.viewport_height : undefined,
@@ -118,6 +125,7 @@ export async function trackPortfolioAnalyticsEvent(event: Omit<PortfolioAnalytic
         path: payload.path,
         language: payload.language,
         referrer: payload.referrer,
+        metadata: payload.metadata ?? {},
         viewport_width: payload.viewport?.width ?? null,
         viewport_height: payload.viewport?.height ?? null,
         created_at: payload.createdAt,

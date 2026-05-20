@@ -99,12 +99,13 @@ export function PortfolioChatbot() {
     return copy.fallback
   }
 
-  const trackChatbotUsage = (type: "chatbot_open" | "chatbot_message") => {
+  const trackChatbotUsage = (type: "chatbot_open" | "chatbot_message", question?: string) => {
     trackPortfolioAnalyticsEvent({
       type,
       path: window.location.pathname || "/",
       language,
       referrer: document.referrer || "",
+      metadata: question ? { question: question.slice(0, 500) } : undefined,
       viewport: {
         width: window.innerWidth,
         height: window.innerHeight,
@@ -124,7 +125,7 @@ export function PortfolioChatbot() {
       { role: "user", text: question },
       { role: "bot", text: answerQuestion(question) },
     ])
-    trackChatbotUsage("chatbot_message")
+    trackChatbotUsage("chatbot_message", question)
     setInput("")
   }
 

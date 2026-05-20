@@ -4,10 +4,14 @@ create table if not exists public.portfolio_analytics (
   path text not null,
   language text not null default 'unknown',
   referrer text not null default '',
+  metadata jsonb not null default '{}'::jsonb,
   viewport_width integer,
   viewport_height integer,
   created_at timestamptz not null default now()
 );
+
+alter table public.portfolio_analytics
+add column if not exists metadata jsonb not null default '{}'::jsonb;
 
 alter table public.portfolio_analytics enable row level security;
 

@@ -39,6 +39,7 @@ const dashboardText = {
     allEvents: "Evenements suivis",
     chatbotOpens: "Ouvertures chatbot",
     chatbotMessages: "Messages chatbot",
+    chatbotQuestions: "Questions posees au chatbot",
     languages: "Langues",
     pages: "Pages les plus vues",
     timeline: "Vues temporelles par page",
@@ -49,7 +50,9 @@ const dashboardText = {
     days90: "90 jours",
     allTime: "Tout",
     recent: "Dernieres visites",
+    question: "Question",
     noData: "Aucune donnee pour le moment. Navigue sur le portfolio pour generer les premieres visites.",
+    noQuestions: "Aucune question chatbot pour le moment.",
     accessError: "Acces analytics indisponible. Verifie les variables Supabase ou la table analytics.",
     githubPages: "Note GitHub Pages",
     githubPagesText: "Sur GitHub Pages, les donnees reelles passent par Supabase. Sans variables Supabase, le dashboard utilise seulement les visites stockees dans ce navigateur.",
@@ -72,6 +75,7 @@ const dashboardText = {
     allEvents: "Tracked events",
     chatbotOpens: "Chatbot opens",
     chatbotMessages: "Chatbot messages",
+    chatbotQuestions: "Questions asked to the chatbot",
     languages: "Languages",
     pages: "Top pages",
     timeline: "Page views over time",
@@ -82,7 +86,9 @@ const dashboardText = {
     days90: "90 days",
     allTime: "All",
     recent: "Recent visits",
+    question: "Question",
     noData: "No data yet. Browse the portfolio to generate the first visits.",
+    noQuestions: "No chatbot questions yet.",
     accessError: "Analytics access unavailable. Check the Supabase variables or analytics table.",
     githubPages: "GitHub Pages note",
     githubPagesText: "On GitHub Pages, real data is stored in Supabase. Without Supabase variables, the dashboard only uses visits stored in this browser.",
@@ -109,13 +115,14 @@ function downloadFile(filename: string, content: string, type: string) {
 
 function toCsv(events: PortfolioAnalyticsEvent[]) {
   const rows = [
-    ["id", "type", "path", "language", "referrer", "viewport_width", "viewport_height", "created_at"],
+    ["id", "type", "path", "language", "referrer", "chatbot_question", "viewport_width", "viewport_height", "created_at"],
     ...events.map((event) => [
       event.id,
       event.type,
       event.path,
       event.language,
       event.referrer,
+      event.metadata?.question ?? "",
       String(event.viewport?.width ?? ""),
       String(event.viewport?.height ?? ""),
       event.createdAt,
@@ -141,11 +148,14 @@ function getPeriodStart(period: string) {
 }
 
 function formatDayKey(date: Date) {
-  return date.toISOString().slice(0, 10)
+  const year = date.getFullYear()
+  const month = String(date.getMonth() + 1).padStart(2, "0")
+  const day = String(date.getDate()).padStart(2, "0")
+  return `${year}-${month}-${day}`
 }
 
 function formatChartDay(day: string, locale: string) {
-  return new Date(`${day}T00:00:00`).toLocaleDateString(locale, {
+  return new Date(`${day}T12:00:00`).toLocaleDateString(locale, {
     day: "2-digit",
     month: "short",
   })
@@ -244,6 +254,10 @@ export default function AnalyticsPage() {
 
   const sortedPages = Object.entries(periodSummary.byPath || {}).sort((a, b) => b[1] - a[1])
   const maxPageViews = Math.max(1, ...sortedPages.map(([, count]) => count))
+  const chatbotQuestions = periodEvents
+    .filter((event) => event.type === "chatbot_message" && event.metadata?.question)
+    .slice()
+    .reverse()
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -397,6 +411,26 @@ export default function AnalyticsPage() {
                   ))
                 ) : (
                   <p className="text-sm text-muted-foreground">{text.noData}</p>
+                )}
+              </div>
+            </Card>
+
+            <Card className="border-border/70 bg-card/80 p-5 lg:col-span-4">
+              <h2 className="mb-4 text-lg font-semibold">{text.chatbotQuestions}</h2>
+              <div className="space-y-3">
+                {chatbotQuestions.length ? (
+                  chatbotQuestions.slice(0, 25).map((event) => (
+                    <div key={event.id} className="rounded-lg border border-border/70 bg-background/50 p-3">
+                      <div className="mb-2 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+                        <Badge variant="outline" className="border-primary/40 text-primary">{event.language.toUpperCase()}</Badge>
+                        <span>{event.path}</span>
+                        <span>{new Date(event.createdAt).toLocaleString(language === "fr" ? "fr-FR" : "en-US")}</span>
+                      </div>
+                      <p className="text-sm leading-relaxed text-foreground">{event.metadata?.question}</p>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-sm text-muted-foreground">{text.noQuestions}</p>
                 )}
               </div>
             </Card>
