@@ -1020,6 +1020,16 @@ export default function ZigZagPage() {
 
                         {gameState.level === 4 && (
                           <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                            <Button asChild variant="outline" className="justify-start sm:col-span-2">
+                              <a
+                                href="https://www.canva.com/design/DAG_cLuhVSw/synMzn4iF9134bSFYLI5dA/view"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <ExternalLink className="w-4 h-4 mr-2" />
+                                {language === "fr" ? "Ouvrir dans Canva" : "Open in Canva"}
+                              </a>
+                            </Button>
                             <Button asChild variant="outline" className="justify-start">
                               <a href="https://zig-zag.fun" target="_blank" rel="noopener noreferrer">
                                 <ExternalLink className="w-4 h-4 mr-2" />
@@ -1082,61 +1092,6 @@ export default function ZigZagPage() {
           )}
         </div>
       </section>
-
-      {/* Presentation Section */}
-      {gameState.level === 4 && gameState.levelComplete && (
-        <section className="relative py-12 px-4">
-          <div className="max-w-6xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-center mb-8"
-            >
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
-                {language === "fr" ? "Presentation du Projet" : "Project Presentation"}
-              </h2>
-              <p className="text-muted-foreground">
-                {language === "fr" 
-                  ? "Decouvrez l'analyse complete, les insights et les resultats dans la presentation Canva."
-                  : "Discover the complete analysis, insights and results in the Canva presentation."}
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2 }}
-              className="relative rounded-xl overflow-hidden border border-border bg-card"
-            >
-              <div className="aspect-[16/9] w-full">
-                <iframe
-                  src="https://www.canva.com/design/DAG_cLuhVSw/synMzn4iF9134bSFYLI5dA/view?embed"
-                  className="w-full h-full"
-                  allowFullScreen
-                />
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="flex justify-center mt-6"
-            >
-              <Button asChild variant="outline">
-                <a 
-                  href="https://www.canva.com/design/DAG_cLuhVSw/synMzn4iF9134bSFYLI5dA/view" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
-                  <ExternalLink className="w-4 h-4 mr-2" />
-                  {language === "fr" ? "Ouvrir dans Canva" : "Open in Canva"}
-                </a>
-              </Button>
-            </motion.div>
-          </div>
-        </section>
-      )}
 
       <AnimatePresence>
         {showEasterEgg && (

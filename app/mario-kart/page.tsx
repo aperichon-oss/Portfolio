@@ -406,15 +406,16 @@ export default function MarioKartPage() {
                   </div>
                   <h2 className="text-2xl font-bold text-foreground mb-2">{t("mario.raceComplete")}</h2>
                   <p className="text-muted-foreground mb-6">{t("mario.raceCompleteDesc")}</p>
-                  <div className="flex gap-4 justify-center">
+                  <div className="flex flex-col gap-3 justify-center sm:flex-row">
                     <Button
                       onClick={restartRace}
                       variant="outline"
+                      className="w-full sm:w-auto"
                     >
                       <RotateCcw className="w-4 h-4 mr-2" />
                       {t("mario.replay")}
                     </Button>
-                    <Button asChild className="bg-mario-red hover:bg-mario-red/90 text-white">
+                    <Button asChild className="w-full bg-mario-red hover:bg-mario-red/90 text-white sm:w-auto">
                       <a href="https://github.com/aperichon-oss/Projet-Mario-Kart" target="_blank" rel="noopener noreferrer">
                         <Github className="w-4 h-4 mr-2" />
                         {t("mario.viewGithub")}
@@ -569,12 +570,12 @@ function PresentationContent({ t, onContinue }: { t: (key: string) => string; on
         />
       </div>
 
-      <div className="flex gap-3">
-        <Button onClick={onContinue} className="bg-mario-green hover:bg-mario-green/90 text-white">
+      <div className="flex flex-col gap-3 sm:flex-row">
+        <Button onClick={onContinue} className="w-full bg-mario-green hover:bg-mario-green/90 text-white sm:w-auto">
           {t("mario.finish")}
           <ChevronRight className="w-4 h-4 ml-2" />
         </Button>
-        <Button asChild variant="outline">
+        <Button asChild variant="outline" className="w-full sm:w-auto">
           <a 
             href="https://www.canva.com/design/DAG2bg_YYyc/fC8KOg4yLi4X-3XNwipbNg/view" 
             target="_blank" 
@@ -584,7 +585,7 @@ function PresentationContent({ t, onContinue }: { t: (key: string) => string; on
             {t("mario.presentation.view")}
           </a>
         </Button>
-        <Button asChild variant="outline">
+        <Button asChild variant="outline" className="w-full sm:w-auto">
           <a 
             href="https://github.com/aperichon-oss/Projet-Mario-Kart" 
             target="_blank" 

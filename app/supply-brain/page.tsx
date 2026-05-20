@@ -296,12 +296,13 @@ export default function SupplyBrainPage() {
               <Card className="relative overflow-hidden rounded-xl border-cyan-500/20 bg-[radial-gradient(circle_at_50%_15%,rgba(14,165,233,0.18),rgba(15,23,42,0.96)_48%,rgba(2,6,23,1))] shadow-[0_0_50px_rgba(6,182,212,0.12)]">
                 <div className="pointer-events-none absolute inset-0 opacity-45 [background-image:linear-gradient(rgba(34,211,238,0.09)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.09)_1px,transparent_1px)] [background-size:38px_38px]" />
                 <div className="pointer-events-none absolute left-0 right-0 top-1/2 h-px bg-cyan-300/20" />
-                <div className="relative aspect-[2/1] min-h-[360px]">
-                  <ComposableMap
-                    projection="geoMercator"
-                    projectionConfig={{ scale: 125, center: [20, 28] }}
-                    style={{ width: "100%", height: "100%" }}
-                  >
+                <div className="relative overflow-x-auto overflow-y-hidden">
+                  <div className="relative aspect-[2/1] min-w-[720px] md:min-w-0 md:min-h-[360px]">
+                    <ComposableMap
+                      projection="geoMercator"
+                      projectionConfig={{ scale: 125, center: [20, 28] }}
+                      style={{ width: "100%", height: "100%" }}
+                    >
                     <defs>
                       <linearGradient id="techMapLand" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" stopColor="#0f766e" />
@@ -397,7 +398,8 @@ export default function SupplyBrainPage() {
                         </g>
                       </Marker>
                     ))}
-                  </ComposableMap>
+                    </ComposableMap>
+                  </div>
                 </div>
 
                 <div className="absolute bottom-4 left-4 flex items-center gap-2 rounded-full border border-cyan-300/20 bg-slate-950/70 px-3 py-2 text-xs text-cyan-100 backdrop-blur">
