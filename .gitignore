@@ -1,0 +1,11 @@
+# Environment variables
+.env*.local
+.portfolio-analytics/
+
+# Common ignores
+node_modules
+.next/
+out/
+*.log
+tsconfig.tsbuildinfo
+.DS_Store
