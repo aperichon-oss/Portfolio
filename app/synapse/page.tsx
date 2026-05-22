@@ -754,7 +754,15 @@ export default function SynapsePage() {
                     </div>
                     
                     {/* Right Page Content Overlay */}
-                    <div className="absolute right-[9.2%] top-[8.6%] h-[80.5%] w-[37.2%] overflow-hidden rounded-[2px] bg-transparent" />
+                    <div className="absolute right-[9.2%] top-[8.6%] h-[80.5%] w-[37.2%] overflow-hidden rounded-[2px] bg-transparent">
+                      <div className="absolute left-1/2 top-[44%] w-[76%] -translate-x-1/2 -translate-y-1/2 rounded-xl border border-amber-700/15 bg-[#f5e0b8]/95 px-4 py-5 text-center shadow-[0_8px_24px_rgba(120,53,15,0.08)]">
+                        <div className="mx-auto mb-3 h-px w-28 bg-gradient-to-r from-transparent via-amber-700/55 to-transparent" />
+                        <p className="text-[clamp(0.62rem,1.05vw,0.88rem)] font-medium leading-relaxed text-amber-900">
+                          {language === "fr" ? "Utilisez les flèches pour tourner les pages" : "Use the arrows to turn the pages"}
+                        </p>
+                        <div className="mx-auto mt-3 h-px w-28 bg-gradient-to-r from-transparent via-amber-700/55 to-transparent" />
+                      </div>
+                    </div>
                     
                     {/* Page numbers */}
                     <div className="absolute bottom-[10%] left-[13%] text-[clamp(0.65rem,1.3vw,0.75rem)] text-amber-600/50">

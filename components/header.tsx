@@ -91,16 +91,6 @@ export function Header() {
               </Button>
             </Link>
 
-            <Link href="/about">
-              <Button
-                variant={pathname === "/about" ? "secondary" : "ghost"}
-                size="sm"
-                className="relative"
-              >
-                {t("nav.about")}
-              </Button>
-            </Link>
-
             {/* Projects Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -140,6 +130,16 @@ export function Header() {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
+
+            <Link href="/about">
+              <Button
+                variant={pathname === "/about" ? "secondary" : "ghost"}
+                size="sm"
+                className="relative"
+              >
+                {t("nav.about")}
+              </Button>
+            </Link>
 
           </nav>
 
@@ -259,15 +259,6 @@ export function Header() {
                 </Button>
               </Link>
 
-              <Link href="/about" onClick={() => setIsOpen(false)}>
-                <Button
-                  variant={pathname === "/about" ? "secondary" : "ghost"}
-                  className="w-full justify-start"
-                >
-                  {t("nav.about")}
-                </Button>
-              </Link>
-
               {/* Projects Section - Mobile */}
               <div className="space-y-1">
                 <Button
@@ -318,6 +309,15 @@ export function Header() {
                   )}
                 </AnimatePresence>
               </div>
+
+              <Link href="/about" onClick={() => setIsOpen(false)}>
+                <Button
+                  variant={pathname === "/about" ? "secondary" : "ghost"}
+                  className="w-full justify-start"
+                >
+                  {t("nav.about")}
+                </Button>
+              </Link>
 
               <div className="flex items-center gap-2 pt-4 border-t border-border mt-2">
                 <Button variant="ghost" size="icon" asChild>
