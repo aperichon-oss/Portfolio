@@ -91,6 +91,16 @@ export function Header() {
               </Button>
             </Link>
 
+            <Link href="/about">
+              <Button
+                variant={pathname === "/about" ? "secondary" : "ghost"}
+                size="sm"
+                className="relative"
+              >
+                {t("nav.about")}
+              </Button>
+            </Link>
+
             {/* Projects Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -246,6 +256,15 @@ export function Header() {
                   className="w-full justify-start"
                 >
                   {t("nav.home")}
+                </Button>
+              </Link>
+
+              <Link href="/about" onClick={() => setIsOpen(false)}>
+                <Button
+                  variant={pathname === "/about" ? "secondary" : "ghost"}
+                  className="w-full justify-start"
+                >
+                  {t("nav.about")}
                 </Button>
               </Link>
 

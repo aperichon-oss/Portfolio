@@ -1115,7 +1115,7 @@ export default function ZigZagPage() {
                   aria-hidden="true"
                   className="pointer-events-none absolute bottom-full right-3 z-10 w-36 translate-y-[15px]"
                 />
-              <h3 className="mb-2 text-lg font-bold text-foreground">{language === "fr" ? "Oeuf cache - ZigZag" : "Easter egg - ZigZag"}</h3>
+              <h3 className="mb-2 text-lg font-bold text-foreground">Easter egg - ZigZag</h3>
               <div className="space-y-2 text-sm leading-relaxed text-muted-foreground">
                 <p><strong>{language === "fr" ? "Stack/imports :" : "Stack/imports:"}</strong> {language === "fr" ? "l'outil s'appuie sur React refs/effects, Canvas 2D, Framer Motion, lucide-react et les composants `Card`, `Button`, `Badge`." : "the tool relies on React refs/effects, Canvas 2D, Framer Motion, lucide-react and the `Card`, `Button`, `Badge` components."}</p>
                 <p><strong>{language === "fr" ? "États clés :" : "Key states:"}</strong> {language === "fr" ? "`gameState` gère les niveaux, tandis que `brushColor`, `brushSize`, `tool`, `isDrawing`, `drawCanvasRef` et `targetCanvasRef` pilotent le dessin." : "`gameState` handles the levels, while `brushColor`, `brushSize`, `tool`, `isDrawing`, `drawCanvasRef` and `targetCanvasRef` drive the drawing tool."}</p>

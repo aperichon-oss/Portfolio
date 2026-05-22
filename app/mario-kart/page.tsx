@@ -367,15 +367,6 @@ export default function MarioKartPage() {
                         alt="Mario in his kart"
                         className="relative h-auto w-full drop-shadow-[0_6px_8px_rgba(0,0,0,0.45)]"
                       />
-                      <button
-                        type="button"
-                        aria-label="Mario Kart insight"
-                        onClick={(event) => {
-                          event.stopPropagation()
-                          setShowEasterEgg(true)
-                        }}
-                        className="absolute inset-0 cursor-default opacity-0"
-                      />
                     </div>
                   </motion.div>
 
@@ -451,7 +442,7 @@ export default function MarioKartPage() {
                   aria-hidden="true"
                   className="pointer-events-none absolute bottom-full right-3 z-10 w-36 translate-y-[15px]"
                 />
-              <h3 className="mb-2 text-lg font-bold text-foreground">{language === "fr" ? "Oeuf cache - Mario Kart" : "Easter egg - Mario Kart"}</h3>
+              <h3 className="mb-2 text-lg font-bold text-foreground">Easter egg - Mario Kart</h3>
               <div className="space-y-2 text-sm leading-relaxed text-muted-foreground">
                 <p><strong>{language === "fr" ? "Stack/imports :" : "Stack/imports:"}</strong> {language === "fr" ? "j'utilise `next/image`, Framer Motion, lucide-react, puis les assets `marioTrack` et `marioKartCharacter`." : "I use `next/image`, Framer Motion, lucide-react, then the `marioTrack` and `marioKartCharacter` assets."}</p>
                 <p><strong>{language === "fr" ? "États clés :" : "Key states:"}</strong> {language === "fr" ? "l'expérience est pilotée par `raceStarted`, `progress`, `currentCheckpoint`, `showContent`, `raceComplete` et `kartY`." : "the experience is driven by `raceStarted`, `progress`, `currentCheckpoint`, `showContent`, `raceComplete` and `kartY`."}</p>

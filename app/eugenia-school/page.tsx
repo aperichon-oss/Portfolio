@@ -266,7 +266,7 @@ export default function EugeniaSchoolPage() {
                                   {language === "fr" ? route.label : ["Discovery", "Programs", "Conversion", "SEO"][index]}
                                 </p>
                                 <p className="mt-1 text-sm leading-snug text-white/90">
-                                  {language === "fr" ? route.value : ["Home · School · DNA · Method · Team · Campus", "Bachelor · MSc · Apprenticeship", "Admissions · Funding · Application · Brochure · Contact", "Blog · Careers · Glossary · FAQ · Press"][index]}
+                                  {language === "fr" ? route.value : ["Home · School · DNA · Method · Team · Campus", "Bachelor · MSc · Apprenticeship", "Admissions · Funding · Apply · Brochure · Contact", "Blog · Careers · Glossary · FAQ · Press"][index]}
                                 </p>
                               </div>
                             ))}
@@ -454,7 +454,7 @@ export default function EugeniaSchoolPage() {
                             {language === "fr" ? route.label : ["Discovery", "Programs", "Conversion", "SEO"][index]}
                           </p>
                           <p className="mt-1 text-sm leading-snug text-white/85">
-                            {language === "fr" ? route.value : ["Home · School · DNA · Method · Team · Campus", "Bachelor · MSc · Apprenticeship", "Admissions · Funding · Application · Brochure · Contact", "Blog · Careers · Glossary · FAQ · Press"][index]}
+                            {language === "fr" ? route.value : ["Home · School · DNA · Method · Team · Campus", "Bachelor · MSc · Apprenticeship", "Admissions · Funding · Apply · Brochure · Contact", "Blog · Careers · Glossary · FAQ · Press"][index]}
                           </p>
                         </div>
                       ))}
@@ -534,7 +534,7 @@ export default function EugeniaSchoolPage() {
                   aria-hidden="true"
                   className="pointer-events-none absolute bottom-full right-3 z-10 w-36 translate-y-[15px]"
                 />
-              <h3 className="mb-2 text-lg font-bold">{language === "fr" ? "Oeuf cache - Eugenia School" : "Easter egg - Eugenia School"}</h3>
+              <h3 className="mb-2 text-lg font-bold">Easter egg - Eugenia School</h3>
               <div className="space-y-2 text-sm leading-relaxed text-white/80">
                 <p><strong>{language === "fr" ? "Stack/imports :" : "Stack/imports:"}</strong> {language === "fr" ? "j'ai utilise `next/image`, Framer Motion, lucide-react, `Button`, `Badge` et Tailwind pour composer les scenes." : "I used `next/image`, Framer Motion, lucide-react, `Button`, `Badge` and Tailwind to compose the scenes."}</p>
                 <p><strong>{language === "fr" ? "Etats cles :" : "Key states:"}</strong> {language === "fr" ? "`currentStep` choisit la scene active; le tableau `steps` regroupe `image`, `title`, `content` et `hotspots`." : "`currentStep` selects the active scene; the `steps` array groups `image`, `title`, `content` and `hotspots`."}</p>

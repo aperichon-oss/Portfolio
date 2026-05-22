@@ -2,6 +2,7 @@
 
 import { FormEvent, useMemo, useState } from "react"
 import Image from "next/image"
+import { usePathname } from "next/navigation"
 import { AnimatePresence, motion } from "framer-motion"
 import { Send, X } from "lucide-react"
 import { useLanguage } from "@/lib/language-context"
@@ -21,9 +22,19 @@ const normalize = (value: string) =>
 
 export function PortfolioChatbot() {
   const { language } = useLanguage()
+  const pathname = usePathname()
   const [open, setOpen] = useState(false)
   const [input, setInput] = useState("")
   const [messages, setMessages] = useState<Message[]>([])
+
+  const currentProject = useMemo(() => {
+    if (pathname?.startsWith("/supply-brain")) return "supply"
+    if (pathname?.startsWith("/synapse")) return "synapse"
+    if (pathname?.startsWith("/eugenia-school")) return "eugenia"
+    if (pathname?.startsWith("/zigzag")) return "zigzag"
+    if (pathname?.startsWith("/mario-kart")) return "mario"
+    return null
+  }, [pathname])
 
   const copy = useMemo(
     () =>
@@ -31,60 +42,61 @@ export function PortfolioChatbot() {
         ? {
             title: "Assistant portfolio",
             placeholder: "Pose une question sur le portfolio...",
-            intro:
-              "Bonjour ! Je peux répondre sur les projets, les technologies, les liens, le contact et le parcours d'Aurélie.",
-            projects:
-              "Les projets sont classés par pertinence : Supply Brain - Hackathon Mirakl, Synapse, Eugenia School, ZigZag, puis Mario Kart.",
-            supply:
-              "Supply Brain est un projet de hackathon Mirakl autour d'un dashboard supply chain, d'agents autonomes, de prévision, de stock, de CO2 et de visualisations.",
-            synapse:
-              "Synapse est un assistant RAG pour explorer des thèses scientifiques : recherche HAL, analyse PDF, indexation FAISS/BM25 et réponses sourcées.",
-            eugenia:
-              "Eugenia School présente une refonte SEO/GEO : prototype multi-pages, audit technique, parcours étudiant, conversion et stratégie de visibilité.",
-            zigzag:
-              "ZigZag est un jeu multijoueur inspiré de Gartic Phone avec lobby, dessin, texte, audio, Supabase Auth et temps réel.",
-            mario:
-              "Mario Kart est un projet data de web scraping des records Mario Kart 8, avec extraction, nettoyage et analyse de performances.",
-            tech:
-              "Les stacks principales couvrent Next.js, React, TypeScript, Tailwind CSS, Supabase, FastAPI, Python, LangChain, FAISS, BM25, Recharts, Leaflet et Framer Motion selon les projets.",
-            contact:
-              "Tu peux contacter Aurélie par email : aurelieperichon@gmail.com. Les liens GitHub et LinkedIn sont dans le header et le footer.",
-            language:
-              "Le portfolio est bilingue. Le bouton FR/EN dans le header change les textes entre français et anglais.",
-            fallback:
-              "Je peux répondre sur les projets, les technologies, les liens, le contact, la navigation ou le fonctionnement du portfolio.",
+            intro: "Bonjour ! Je peux repondre sur les projets, les technologies, les liens, le contact et le parcours d'Aurelie.",
+            projects: "Les projets sont classes par pertinence : Supply Brain - Hackathon Mirakl, Synapse, Eugenia School, ZigZag, puis Mario Kart.",
+            supply: "Supply Brain est un projet Hackathon Mirakl. Il presente Nordika Pulse, une extension de Mirakl Connect qui centralise stocks, ventes, commandes, supply chain et CO2. La solution utilise Dust.tt, Supabase, Recharts, Leaflet, n8n et plusieurs agents : Monitoring Agent, Supply Allocation, GeoSupplyWatch et Carbon Footprint Tracker.",
+            synapse: "Synapse est un assistant RAG pour explorer des theses scientifiques. Il combine recherche HAL, extraction PDF avec PyMuPDF, chunking, embeddings, indexation FAISS/BM25, retrieval des passages pertinents et reponses LLM sourcees.",
+            eugenia: "Eugenia School presente une refonte SEO/GEO interactive : prototype React/Vite/TypeScript/Tailwind, architecture de contenu par parcours, audit SEO/GEO avec scores, blocages techniques et strategie de visibilite.",
+            zigzag: "ZigZag est un jeu multijoueur inspire de Gartic Phone. Il combine Next.js, React, TypeScript, Tailwind CSS, Supabase, PostgreSQL, Supabase Auth, Google OAuth et Realtime pour gerer lobby, tours, dessin, texte, audio et galerie finale.",
+            mario: "Mario Kart est un projet data autour du web scraping des records Mario Kart 8 : extraction des temps, nettoyage, export CSV, analyse de performance et presentation Canva.",
+            tech: "Les stacks principales couvrent Next.js, React, TypeScript, Tailwind CSS, Supabase, FastAPI, Python, LangChain, FAISS, BM25, Recharts, Leaflet et Framer Motion selon les projets.",
+            contact: "Tu peux contacter Aurelie par email : aurelieperichon@gmail.com. Les liens GitHub et LinkedIn sont dans le header et le footer.",
+            language: "Le portfolio est bilingue. Le bouton FR/EN dans le header change les textes entre francais et anglais.",
+            about: "Aurelie Perichon est etudiante en MSc AI Applied to Business, avec une experience en marketing digital et 5 ans dans le retail. Son portfolio met en avant des projets data, IA, web et SEO/GEO.",
+            fallback: "Je peux repondre sur les projets, les technologies, les liens, le contact, la navigation ou le fonctionnement du portfolio.",
           }
         : {
             title: "Portfolio assistant",
             placeholder: "Ask a question about the portfolio...",
-            intro:
-              "Hi! I can answer questions about Aurélie's projects, technologies, links, contact details and background.",
-            projects:
-              "Projects are ordered by relevance: Supply Brain - Mirakl Hackathon, Synapse, Eugenia School, ZigZag, then Mario Kart.",
-            supply:
-              "Supply Brain is a Mirakl hackathon project around a supply chain dashboard, autonomous agents, forecasting, inventory, CO2 and visualizations.",
-            synapse:
-              "Synapse is a RAG assistant for scientific theses: HAL search, PDF analysis, FAISS/BM25 indexing and sourced answers.",
-            eugenia:
-              "Eugenia School showcases an SEO/GEO redesign: multi-page prototype, technical audit, student journey, conversion and visibility strategy.",
-            zigzag:
-              "ZigZag is a multiplayer game inspired by Gartic Phone with lobby, drawing, text, audio, Supabase Auth and real-time sync.",
-            mario:
-              "Mario Kart is a data project scraping Mario Kart 8 world records, with extraction, cleaning and performance analysis.",
-            tech:
-              "Main stacks include Next.js, React, TypeScript, Tailwind CSS, Supabase, FastAPI, Python, LangChain, FAISS, BM25, Recharts, Leaflet and Framer Motion depending on the project.",
-            contact:
-              "You can contact Aurélie by email: aurelieperichon@gmail.com. GitHub and LinkedIn links are available in the header and footer.",
-            language:
-              "The portfolio is bilingual. The FR/EN button in the header switches all text between French and English.",
-            fallback:
-              "I can answer questions about projects, technologies, links, contact, navigation or how the portfolio works.",
+            intro: "Hi! I can answer questions about Aurelie's projects, technologies, links, contact details and background.",
+            projects: "Projects are ordered by relevance: Supply Brain - Mirakl Hackathon, Synapse, Eugenia School, ZigZag, then Mario Kart.",
+            supply: "Supply Brain is a Mirakl Hackathon project. It presents Nordika Pulse, a Mirakl Connect extension that centralizes inventory, sales, orders, supply-chain data and CO2 impact. It uses Dust.tt, Supabase, Recharts, Leaflet, n8n and agents such as Monitoring Agent, Supply Allocation, GeoSupplyWatch and Carbon Footprint Tracker.",
+            synapse: "Synapse is a RAG assistant for scientific theses. It combines HAL search, PDF extraction with PyMuPDF, chunking, embeddings, FAISS/BM25 indexing, relevant-passage retrieval and sourced LLM answers.",
+            eugenia: "Eugenia School showcases an interactive SEO/GEO redesign: React/Vite/TypeScript/Tailwind prototype, content architecture by user journey, SEO/GEO audit with scores, technical blockers and visibility strategy.",
+            zigzag: "ZigZag is a multiplayer game inspired by Gartic Phone. It uses Next.js, React, TypeScript, Tailwind CSS, Supabase, PostgreSQL, Supabase Auth, Google OAuth and Realtime to handle lobby, rounds, drawing, text, audio and the final gallery.",
+            mario: "Mario Kart is a data project focused on scraping Mario Kart 8 world records: time extraction, cleaning, CSV export, performance analysis and Canva presentation.",
+            tech: "Main stacks include Next.js, React, TypeScript, Tailwind CSS, Supabase, FastAPI, Python, LangChain, FAISS, BM25, Recharts, Leaflet and Framer Motion depending on the project.",
+            contact: "You can contact Aurelie by email: aurelieperichon@gmail.com. GitHub and LinkedIn links are available in the header and footer.",
+            language: "The portfolio is bilingual. The FR/EN button in the header switches all text between French and English.",
+            about: "Aurelie Perichon is an MSc AI Applied to Business student with digital marketing experience and 5 years in retail. Her portfolio highlights data, AI, web and SEO/GEO projects.",
+            fallback: "I can answer questions about projects, technologies, links, contact, navigation or how the portfolio works.",
           },
     [language],
   )
 
   const answerQuestion = (question: string) => {
     const q = normalize(question)
+    const projectAnswers = {
+      supply: copy.supply,
+      synapse: copy.synapse,
+      eugenia: copy.eugenia,
+      zigzag: copy.zigzag,
+      mario: copy.mario,
+    }
+
+    if (
+      currentProject &&
+      (q.includes("ce projet") ||
+        q.includes("this project") ||
+        q.includes("explique") ||
+        q.includes("explain") ||
+        q.includes("c'est quoi") ||
+        q.includes("what is it") ||
+        q.includes("detail") ||
+        q.includes("details"))
+    ) {
+      return projectAnswers[currentProject]
+    }
 
     if (q.includes("supply") || q.includes("mirakl") || q.includes("hackathon")) return copy.supply
     if (q.includes("synapse") || q.includes("rag") || q.includes("these") || q.includes("thesis") || q.includes("hal")) return copy.synapse
@@ -94,9 +106,10 @@ export function PortfolioChatbot() {
     if (q.includes("tech") || q.includes("stack") || q.includes("outil") || q.includes("library") || q.includes("librairie")) return copy.tech
     if (q.includes("contact") || q.includes("email") || q.includes("mail") || q.includes("linkedin") || q.includes("github")) return copy.contact
     if (q.includes("anglais") || q.includes("english") || q.includes("francais") || q.includes("french") || q.includes("langue")) return copy.language
-    if (q.includes("projet") || q.includes("project") || q.includes("ordre") || q.includes("order")) return copy.projects
+    if (q.includes("a propos") || q.includes("about") || q.includes("aurelie") || q.includes("parcours")) return copy.about
+    if (q.includes("projet") || q.includes("project") || q.includes("ordre") || q.includes("order")) return currentProject ? projectAnswers[currentProject] : copy.projects
 
-    return copy.fallback
+    return currentProject ? `${projectAnswers[currentProject]}\n\n${copy.fallback}` : copy.fallback
   }
 
   const trackChatbotUsage = (type: "chatbot_open" | "chatbot_message", question?: string) => {
@@ -128,6 +141,8 @@ export function PortfolioChatbot() {
     trackChatbotUsage("chatbot_message", question)
     setInput("")
   }
+
+  if (pathname?.startsWith("/analytics")) return null
 
   return (
     <div className="fixed bottom-4 right-4 z-50 sm:bottom-5 sm:right-5">
@@ -164,7 +179,7 @@ export function PortfolioChatbot() {
                   className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
                 >
                   <div
-                    className={`max-w-[85%] rounded-2xl px-3 py-2 leading-relaxed ${
+                    className={`max-w-[85%] whitespace-pre-line rounded-2xl px-3 py-2 leading-relaxed ${
                       message.role === "user"
                         ? "rounded-tr-sm bg-primary text-primary-foreground"
                         : "rounded-tl-sm bg-muted text-muted-foreground"

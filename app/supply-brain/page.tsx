@@ -139,7 +139,9 @@ export default function SupplyBrainPage() {
 
   const frontendStack = ["React 19", "Vite 6", "Recharts", "Leaflet", "i18next"]
   const backendStack = ["Supabase", "Dust.tt", "OpenAI GPT-4o", "n8n"]
-  const intelligenceStack = ["Agents autonomes", "NL2SQL", "Alertes temps reel", "Workflows batch", "Cartographie risque", "Score CO2"]
+  const intelligenceStack = language === "fr"
+    ? ["Agents autonomes", "NL2SQL", "Alertes temps reel", "Workflows batch", "Cartographie risque", "Score CO2"]
+    : ["Autonomous agents", "NL2SQL", "Real-time alerts", "Batch workflows", "Risk mapping", "CO2 score"]
   const presentationUrl = assetPath("/supply-brain-presentation.html")
 
   const stepContents = [
@@ -726,7 +728,7 @@ export default function SupplyBrainPage() {
                   className="pointer-events-none absolute bottom-full right-3 z-10 w-36 translate-y-[15px]"
                 />
 
-              <h3 className="mb-2 text-lg font-bold text-foreground">{language === "fr" ? "Oeuf cache - Supply Brain" : "Easter egg - Supply Brain"}</h3>
+              <h3 className="mb-2 text-lg font-bold text-foreground">Easter egg - Supply Brain</h3>
               <div className="space-y-2 text-sm leading-relaxed text-muted-foreground">
                 <p><strong>{language === "fr" ? "Stack/imports :" : "Stack/imports:"}</strong> {language === "fr" ? "la carte utilise `react-simple-maps` avec `ComposableMap`, `Geographies`, `Geography`, `Marker`, `Line`, plus Framer Motion et `next/image`." : "the map uses `react-simple-maps` with `ComposableMap`, `Geographies`, `Geography`, `Marker`, `Line`, plus Framer Motion and `next/image`."}</p>
                 <p><strong>{language === "fr" ? "États clés :" : "Key states:"}</strong> {language === "fr" ? "`started` lance la carte, `selectedStep` ouvre la bonne étape, et `showEasterEgg` contrôle cet encadré." : "`started` launches the map, `selectedStep` opens the right step, and `showEasterEgg` controls this panel."}</p>

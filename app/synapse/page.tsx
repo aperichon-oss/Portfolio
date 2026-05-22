@@ -105,13 +105,13 @@ export default function SynapsePage() {
   ]
 
   const pipelineSteps = [
-    { icon: <MessageSquare className="w-4 h-4" />, label: language === "fr" ? "Requête utilisateur" : "User query" },
+    { icon: <MessageSquare className="w-4 h-4" />, label: language === "fr" ? "Requête utilisateur" : "User request" },
     { icon: <Search className="w-4 h-4" />, label: language === "fr" ? "Recherche HAL API" : "HAL API search" },
     { icon: <FileText className="w-4 h-4" />, label: language === "fr" ? "Téléchargement PDF" : "PDF download" },
-    { icon: <FileText className="w-4 h-4" />, label: "Extraction texte avec PyMuPDF" },
+    { icon: <FileText className="w-4 h-4" />, label: language === "fr" ? "Extraction texte avec PyMuPDF" : "Text extraction with PyMuPDF" },
     { icon: <Cpu className="w-4 h-4" />, label: language === "fr" ? "Chunking et embeddings" : "Chunking and embeddings" },
     { icon: <Database className="w-4 h-4" />, label: language === "fr" ? "Indexation FAISS + BM25" : "FAISS + BM25 indexing" },
-    { icon: <Brain className="w-4 h-4" />, label: "Retrieval des passages pertinents" },
+    { icon: <Brain className="w-4 h-4" />, label: language === "fr" ? "Retrieval des passages pertinents" : "Relevant passage retrieval" },
     { icon: <Zap className="w-4 h-4" />, label: language === "fr" ? "Réponse LLM avec sources" : "LLM answer with sources" },
   ]
 
@@ -195,7 +195,7 @@ export default function SynapsePage() {
           <div className="min-w-0 rounded-lg border border-amber-800/15 bg-transparent p-[clamp(0.35rem,0.9vw,0.75rem)]">
             <h4 className="font-semibold text-amber-800 text-[clamp(0.64rem,1vw,0.82rem)] mb-[clamp(0.25rem,0.8vw,0.55rem)] flex items-center gap-1">
               <FileText className="w-3 h-3" />
-              RAG / Recherche
+              {language === "fr" ? "RAG / Recherche" : "RAG / Search"}
             </h4>
             <div className="flex min-w-0 flex-wrap gap-1">
               {ragStack.map((tech) => (
@@ -864,7 +864,7 @@ export default function SynapsePage() {
                   className="pointer-events-none absolute bottom-full right-3 z-10 w-36 translate-y-[15px]"
 
                 />
-              <h3 className="mb-2 text-lg font-bold">{language === "fr" ? "Oeuf cache - Synapse" : "Easter egg - Synapse"}</h3>
+              <h3 className="mb-2 text-lg font-bold">Easter egg - Synapse</h3>
               <div className="space-y-2 text-sm leading-relaxed text-amber-950">
                 <p><strong>{language === "fr" ? "Stack/imports :" : "Stack/imports:"}</strong> {language === "fr" ? "la page combine Canvas API, Framer Motion, lucide-react, `Button`, `Badge` et les hooks `useRef`, `useEffect`, `useState`." : "the page combines Canvas API, Framer Motion, lucide-react, `Button`, `Badge` and the `useRef`, `useEffect`, `useState` hooks."}</p>
                 <p><strong>{language === "fr" ? "Etats cles :" : "Key states:"}</strong> {language === "fr" ? "`bookState`, `currentPage`, `turningPage` et `turnDirection` controlent le livre; `neuronsRef` et `impulsesRef` animent le fond." : "`bookState`, `currentPage`, `turningPage` and `turnDirection` control the book; `neuronsRef` and `impulsesRef` animate the background."}</p>
