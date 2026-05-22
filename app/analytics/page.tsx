@@ -376,20 +376,28 @@ export default function AnalyticsPage() {
                 <div className="h-80 w-full">
                   <ResponsiveContainer width="100%" height="100%">
                     <LineChart data={chartData.rows} margin={{ top: 8, right: 18, left: -20, bottom: 18 }}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.35} />
+                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(148, 163, 184, 0.22)" />
                       <XAxis
                         dataKey="label"
-                        stroke="hsl(var(--muted-foreground))"
+                        stroke="rgba(226, 232, 240, 0.72)"
                         fontSize={12}
                         tickLine={false}
-                        axisLine={false}
+                        axisLine={{ stroke: "rgba(226, 232, 240, 0.28)" }}
                         interval={getXAxisInterval(period)}
                         minTickGap={0}
                         angle={period === "7" ? 0 : -25}
                         textAnchor={period === "7" ? "middle" : "end"}
                         height={period === "7" ? 34 : 52}
+                        tick={{ fill: "rgba(226, 232, 240, 0.72)", fontSize: 12 }}
                       />
-                      <YAxis stroke="hsl(var(--muted-foreground))" fontSize={12} tickLine={false} axisLine={false} allowDecimals={false} />
+                      <YAxis
+                        stroke="rgba(226, 232, 240, 0.55)"
+                        fontSize={12}
+                        tickLine={false}
+                        axisLine={false}
+                        allowDecimals={false}
+                        tick={{ fill: "rgba(226, 232, 240, 0.55)", fontSize: 12 }}
+                      />
                       <Tooltip
                         contentStyle={{
                           background: "hsl(var(--card))",
