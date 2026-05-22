@@ -29,15 +29,33 @@ const localStorageKey = "portfolio-analytics-events"
 const maxStoredEvents = 5000
 
 function getSupabaseConfig() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const url = normalizeSupabaseUrl(process.env.NEXT_PUBLIC_SUPABASE_URL)
   const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
   const table = process.env.NEXT_PUBLIC_SUPABASE_ANALYTICS_TABLE || "portfolio_analytics"
 
   if (!url || !anonKey) return null
 
   return {
-    endpoint: `${url.replace(/\/$/, "")}/rest/v1/${table}`,
+    endpoint: `${url}/rest/v1/${table}`,
     anonKey,
+  }
+}
+
+function normalizeSupabaseUrl(rawUrl?: string) {
+  if (!rawUrl) return ""
+
+  const trimmed = rawUrl.trim().replace(/\/$/, "")
+  const dashboardMatch = trimmed.match(/supabase\.com\/dashboard\/project\/([a-z0-9]+)/i)
+
+  if (dashboardMatch?.[1]) {
+    return `https://${dashboardMatch[1]}.supabase.co`
+  }
+
+  try {
+    const parsed = new URL(trimmed)
+    return `${parsed.protocol}//${parsed.host}`
+  } catch {
+    return trimmed
   }
 }
 
@@ -63,6 +81,12 @@ function readLocalEvents() {
 function writeLocalEvents(events: PortfolioAnalyticsEvent[]) {
   if (typeof window === "undefined") return
   window.localStorage.setItem(localStorageKey, JSON.stringify(events.slice(-maxStoredEvents)))
+}
+
+function storeLocalEvent(event: PortfolioAnalyticsEvent) {
+  const events = readLocalEvents()
+  events.push(event)
+  writeLocalEvents(events)
 }
 
 function mapSupabaseEvent(row: Record<string, unknown>): PortfolioAnalyticsEvent {
@@ -111,38 +135,38 @@ export async function trackPortfolioAnalyticsEvent(event: Omit<PortfolioAnalytic
   const supabase = getSupabaseConfig()
 
   if (supabase) {
-    const response = await fetch(supabase.endpoint, {
-      method: "POST",
-      headers: {
-        apikey: supabase.anonKey,
-        Authorization: `Bearer ${supabase.anonKey}`,
-        "Content-Type": "application/json",
-        Prefer: "return=minimal",
-      },
-      body: JSON.stringify({
-        id: payload.id,
-        type: payload.type,
-        path: payload.path,
-        language: payload.language,
-        referrer: payload.referrer,
-        metadata: payload.metadata ?? {},
-        viewport_width: payload.viewport?.width ?? null,
-        viewport_height: payload.viewport?.height ?? null,
-        created_at: payload.createdAt,
-      }),
-      keepalive: true,
-    })
+    try {
+      const response = await fetch(supabase.endpoint, {
+        method: "POST",
+        headers: {
+          apikey: supabase.anonKey,
+          Authorization: `Bearer ${supabase.anonKey}`,
+          "Content-Type": "application/json",
+          Prefer: "return=minimal",
+        },
+        body: JSON.stringify({
+          id: payload.id,
+          type: payload.type,
+          path: payload.path,
+          language: payload.language,
+          referrer: payload.referrer,
+          metadata: payload.metadata ?? {},
+          viewport_width: payload.viewport?.width ?? null,
+          viewport_height: payload.viewport?.height ?? null,
+          created_at: payload.createdAt,
+        }),
+        keepalive: true,
+      })
 
-    if (!response.ok) {
-      throw new Error("analytics-track-failed")
+      if (response.ok) {
+        return
+      }
+    } catch {
+      // Local fallback below keeps the current browser's analytics usable.
     }
-
-    return
   }
 
-  const events = readLocalEvents()
-  events.push(payload)
-  writeLocalEvents(events)
+  storeLocalEvent(payload)
 }
 
 export async function trackPortfolioPageview(event: Omit<PortfolioAnalyticsEvent, "id" | "createdAt" | "type">) {
@@ -156,20 +180,22 @@ export async function loadPortfolioAnalyticsEvents() {
   const supabase = getSupabaseConfig()
 
   if (supabase) {
-    const response = await fetch(`${supabase.endpoint}?select=*&order=created_at.asc&limit=${maxStoredEvents}`, {
-      headers: {
-        apikey: supabase.anonKey,
-        Authorization: `Bearer ${supabase.anonKey}`,
-      },
-      cache: "no-store",
-    })
+    try {
+      const response = await fetch(`${supabase.endpoint}?select=*&order=created_at.asc&limit=${maxStoredEvents}`, {
+        headers: {
+          apikey: supabase.anonKey,
+          Authorization: `Bearer ${supabase.anonKey}`,
+        },
+        cache: "no-store",
+      })
 
-    if (!response.ok) {
-      throw new Error("analytics-load-failed")
+      if (response.ok) {
+        const rows = (await response.json()) as Record<string, unknown>[]
+        return rows.map(mapSupabaseEvent)
+      }
+    } catch {
+      // Fall through to local analytics if the remote store is unavailable.
     }
-
-    const rows = (await response.json()) as Record<string, unknown>[]
-    return rows.map(mapSupabaseEvent)
   }
 
   return readLocalEvents()
