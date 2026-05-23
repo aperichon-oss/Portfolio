@@ -755,12 +755,12 @@ export default function SynapsePage() {
                     
                     {/* Right Page Content Overlay */}
                     <div className="absolute right-[9.2%] top-[8.6%] h-[80.5%] w-[37.2%] overflow-hidden rounded-[2px] bg-transparent">
-                      <div className="absolute left-1/2 top-[42%] w-[84%] -translate-x-1/2 -translate-y-1/2 bg-[#f6dfb5] px-5 py-7 text-center">
-                        <div className="mx-auto mb-3 h-px w-28 bg-gradient-to-r from-transparent via-amber-700/45 to-transparent" />
-                        <p className="text-[clamp(0.66rem,1.08vw,0.92rem)] font-medium leading-relaxed text-amber-900">
+                      <div className="absolute left-1/2 top-[41.5%] w-[88%] -translate-x-1/2 -translate-y-1/2 bg-gradient-to-t from-[#f0ce91] via-[#f6dfb5] to-[#fff0c8] px-6 py-8 text-center">
+                        <div className="mx-auto mb-3 h-px w-28 bg-gradient-to-l from-transparent via-amber-700/45 to-transparent" />
+                        <p className="font-serif text-[clamp(0.72rem,1.12vw,1rem)] font-semibold leading-relaxed text-[#8a3f16]">
                           {language === "fr" ? "Utilisez les flèches pour tourner les pages" : "Use the arrows to turn the pages"}
                         </p>
-                        <div className="mx-auto mt-3 h-px w-28 bg-gradient-to-r from-transparent via-amber-700/45 to-transparent" />
+                        <div className="mx-auto mt-3 h-px w-28 bg-gradient-to-l from-transparent via-amber-700/45 to-transparent" />
                       </div>
                     </div>
                     
