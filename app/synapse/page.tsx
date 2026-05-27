@@ -755,12 +755,10 @@ export default function SynapsePage() {
                     
                     {/* Right Page Text Overlay */}
                     <div className="pointer-events-none absolute right-[9.2%] top-[8.6%] h-[80.5%] w-[37.2%] overflow-hidden rounded-[2px] bg-transparent">
-                      <div className="absolute left-1/2 top-[41.5%] flex w-[78%] -translate-x-1/2 -translate-y-1/2 flex-col items-center text-center">
-                        <div className="mx-auto mb-3 h-px w-28 bg-gradient-to-r from-transparent via-amber-700/45 to-transparent" />
+                      <div className="absolute left-[46%] top-[45%] flex w-[78%] -translate-x-1/2 -translate-y-1/2 flex-col items-center text-center">
                         <p className="font-serif text-[clamp(0.72rem,1.12vw,1rem)] font-semibold leading-relaxed text-[#8a3f16]">
                           {language === "fr" ? "Utilisez les flèches pour tourner les pages" : "Use the arrows to turn the pages"}
                         </p>
-                        <div className="mx-auto mt-3 h-px w-28 bg-gradient-to-r from-transparent via-amber-700/45 to-transparent" />
                       </div>
                     </div>
 
