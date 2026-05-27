@@ -52,7 +52,7 @@ export function PortfolioChatbot() {
             tech: "Les stacks principales couvrent Next.js, React, TypeScript, Tailwind CSS, Supabase, FastAPI, Python, LangChain, FAISS, BM25, Recharts, Leaflet et Framer Motion selon les projets.",
             contact: "Tu peux contacter Aurelie par email : aurelieperichon@gmail.com. Les liens GitHub et LinkedIn sont dans le header et le footer.",
             language: "Le portfolio est bilingue. Le bouton FR/EN dans le header change les textes entre francais et anglais.",
-            about: "Aurelie Perichon est etudiante en MSc AI Applied to Business, avec une experience en marketing digital et 5 ans dans le retail. Son portfolio met en avant des projets data, IA, web et SEO/GEO.",
+            about: "Aurelie Perichon est etudiante en MSc AI Applied to Business. Son parcours combine business development digital chez Air Liquide, marketing digital chez Olover, management retail chez Carrefour City et une specialisation data/IA. Ses competences utiles couvrent Python, SQL, data visualization, Power BI, Dataiku, Shopify, Brevo, CRM et Google Sheets.",
             fallback: "Je peux repondre sur les projets, les technologies, les liens, le contact, la navigation ou le fonctionnement du portfolio.",
           }
         : {
@@ -68,7 +68,7 @@ export function PortfolioChatbot() {
             tech: "Main stacks include Next.js, React, TypeScript, Tailwind CSS, Supabase, FastAPI, Python, LangChain, FAISS, BM25, Recharts, Leaflet and Framer Motion depending on the project.",
             contact: "You can contact Aurelie by email: aurelieperichon@gmail.com. GitHub and LinkedIn links are available in the header and footer.",
             language: "The portfolio is bilingual. The FR/EN button in the header switches all text between French and English.",
-            about: "Aurelie Perichon is an MSc AI Applied to Business student with digital marketing experience and 5 years in retail. Her portfolio highlights data, AI, web and SEO/GEO projects.",
+            about: "Aurelie Perichon is an MSc AI Applied to Business student. Her background combines digital business development at Air Liquide, digital marketing at Olover, retail management at Carrefour City and a growing data/AI specialization. Key skills include Python, SQL, data visualization, Power BI, Dataiku, Shopify, Brevo, CRM and Google Sheets.",
             fallback: "I can answer questions about projects, technologies, links, contact, navigation or how the portfolio works.",
           },
     [language],

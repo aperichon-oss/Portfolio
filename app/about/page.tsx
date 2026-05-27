@@ -32,12 +32,17 @@ const skills = [
   { name: "Python", category: "code" },
   { name: "SQL", category: "code" },
   { name: "NoSQL", category: "code" },
+  { name: "Data cleaning", category: "code" },
+  { name: "Data visualization", category: "code" },
+  { name: "Machine Learning", category: "code" },
   { name: "NoCode", category: "tool" },
   { name: "Power BI", category: "tool" },
   { name: "Dataiku", category: "tool" },
   { name: "Google Sheets", category: "tool" },
+  { name: "CRM", category: "tool" },
   { name: "Canva", category: "tool" },
   { name: "Shopify", category: "tool" },
+  { name: "WordPress", category: "tool" },
   { name: "Brevo", category: "tool" },
 ]
 
@@ -80,8 +85,8 @@ export default function AboutPage() {
       current: false,
     },
     {
-      degree: language === "fr" ? "Formation commerce et management" : "Business and management training",
-      school: language === "fr" ? "Parcours retail" : "Retail track",
+      degree: language === "fr" ? "BTS Management Commercial Opérationnel" : "BTS Commercial Operations Management",
+      school: "CFA AFIPE | Vente & Commerce",
       period: "2022-2024",
       current: false,
     },
@@ -89,22 +94,28 @@ export default function AboutPage() {
 
   const experience = [
     {
-      role: language === "fr" ? "Expérience professionnelle" : "Professional experience",
+      role: "Business Developer Digital & IT Products",
       company: "Air Liquide",
-      period: language === "fr" ? "Paris et périphérie" : "Paris area",
-      description: language === "fr" ? "Expérience listée sur LinkedIn dans un environnement industriel international." : "Experience listed on LinkedIn in an international industrial environment.",
+      period: language === "fr" ? "Depuis sept. 2025 - Alternance" : "Since Sep. 2025 - Apprenticeship",
+      description: language === "fr" ? "Développement business sur des produits digitaux et IT dans un environnement industriel international." : "Business development for digital and IT products in an international industrial environment.",
     },
     {
-      role: language === "fr" ? "Chargée de marketing digital" : "Digital Marketing Manager",
+      role: language === "fr" ? "Chargée de marketing digital" : "Digital Marketing Specialist",
       company: "Olover",
-      period: "2024-2025",
-      description: language === "fr" ? "Stratégie digitale, SEO, campagnes marketing" : "Digital strategy, SEO, marketing campaigns",
+      period: language === "fr" ? "Oct. 2024 - août 2025 - Alternance" : "Oct. 2024 - Aug. 2025 - Apprenticeship",
+      description: language === "fr" ? "Création Shopify, newsletters Brevo, CRM, réseaux sociaux, suivi KPI et accompagnement de la refonte du site." : "Shopify website creation, Brevo newsletters, CRM, social media, KPI tracking and support during the website redesign.",
     },
     {
       role: language === "fr" ? "Apprentie manager" : "Manager Apprentice",
       company: "Carrefour City",
-      period: "2022-2024",
-      description: language === "fr" ? "Gestion d'équipe, opérations retail, relation client" : "Team management, retail operations, customer relations",
+      period: language === "fr" ? "Oct. 2022 - août 2024 - Alternance" : "Oct. 2022 - Aug. 2024 - Apprenticeship",
+      description: language === "fr" ? "Management opérationnel, relation client, approvisionnement, gestion des flux et suivi des rayons rentables." : "Operational management, customer relations, supply management, flow management and tracking of profitable shelves.",
+    },
+    {
+      role: language === "fr" ? "Conseillère commerciale" : "Sales Advisor",
+      company: "Les Jardins du Mesnil",
+      period: "2019-2022",
+      description: language === "fr" ? "Vente, conseil client, gestion des stocks, commandes fournisseurs et contrôle qualité des marchandises." : "Sales, customer advice, inventory management, supplier orders and quality control of goods.",
     },
   ]
 
@@ -113,6 +124,11 @@ export default function AboutPage() {
       name: "Dataiku Core Designer",
       issuer: "Dataiku",
       period: language === "fr" ? "Délivrée en janv. 2026" : "Issued Jan. 2026",
+    },
+    {
+      name: "No Code - TechAway niv1 (FR)",
+      issuer: "DataScientest.com",
+      period: language === "fr" ? "Certification No Code" : "No-code certification",
     },
     {
       name: "Google Sheets Marketing",
