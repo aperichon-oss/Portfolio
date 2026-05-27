@@ -601,7 +601,7 @@ export default function SynapsePage() {
                       }}
                     >
                       <img 
-                        src={assetPath("/images/synapse/book-cover.png")} 
+                        src={assetPath("/images/synapse/book-cover.jpg")} 
                         alt="Synapse Book Cover"
                         className="w-full h-full object-cover"
                       />
@@ -659,7 +659,7 @@ export default function SynapsePage() {
                     className="w-72 h-[400px] rounded-r-lg rounded-l-sm relative overflow-hidden"
                   >
                     <img 
-                      src={assetPath("/images/synapse/book-cover.png")} 
+                      src={assetPath("/images/synapse/book-cover.jpg")} 
                       alt="Synapse Book Cover"
                       className="w-full h-full object-cover"
                     />
@@ -703,7 +703,7 @@ export default function SynapsePage() {
                     className="relative aspect-[7/4.5] w-[min(92vw,700px)]"
                   >
                     <img 
-                      src={assetPath("/images/synapse/book-pages.png")} 
+                      src={assetPath("/images/synapse/book-pages.jpg")} 
                       alt="Synapse Book Pages"
                       className="w-full h-full object-contain"
                     />
@@ -737,7 +737,7 @@ export default function SynapsePage() {
                   {/* Book pages background */}
                   <div className="relative aspect-[7/4.5] w-[min(98vw,960px,calc((100vh-11rem)*1.55))]">
                     <img 
-                      src={assetPath("/images/synapse/book-pages.png")} 
+                      src={assetPath("/images/synapse/book-pages.jpg")} 
                       alt="Synapse Book Pages"
                       className="absolute inset-0 w-full h-full object-contain"
                     />
@@ -755,12 +755,12 @@ export default function SynapsePage() {
                     
                     {/* Right Page Content Overlay */}
                     <div className="absolute right-[9.2%] top-[8.6%] h-[80.5%] w-[37.2%] overflow-hidden rounded-[2px] bg-transparent">
-                      <div className="absolute left-1/2 top-[41.5%] w-[88%] -translate-x-1/2 -translate-y-1/2 bg-gradient-to-t from-[#f0ce91] via-[#f6dfb5] to-[#fff0c8] px-6 py-8 text-center">
-                        <div className="mx-auto mb-3 h-px w-28 bg-gradient-to-l from-transparent via-amber-700/45 to-transparent" />
+                      <div className="absolute left-1/2 top-[41.5%] flex h-[44%] w-[108%] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center px-8 text-center [background:radial-gradient(ellipse_at_center,#f1cf94_0%,#f5dbac_48%,rgba(248,228,187,0.78)_66%,rgba(248,228,187,0)_82%)]">
+                        <div className="mx-auto mb-3 h-px w-28 bg-gradient-to-r from-transparent via-amber-700/35 to-transparent" />
                         <p className="font-serif text-[clamp(0.72rem,1.12vw,1rem)] font-semibold leading-relaxed text-[#8a3f16]">
                           {language === "fr" ? "Utilisez les flèches pour tourner les pages" : "Use the arrows to turn the pages"}
                         </p>
-                        <div className="mx-auto mt-3 h-px w-28 bg-gradient-to-l from-transparent via-amber-700/45 to-transparent" />
+                        <div className="mx-auto mt-3 h-px w-28 bg-gradient-to-r from-transparent via-amber-700/35 to-transparent" />
                       </div>
                     </div>
                     
@@ -877,7 +877,7 @@ export default function SynapsePage() {
                 <p><strong>{language === "fr" ? "Stack/imports :" : "Stack/imports:"}</strong> {language === "fr" ? "la page combine Canvas API, Framer Motion, lucide-react, `Button`, `Badge` et les hooks `useRef`, `useEffect`, `useState`." : "the page combines Canvas API, Framer Motion, lucide-react, `Button`, `Badge` and the `useRef`, `useEffect`, `useState` hooks."}</p>
                 <p><strong>{language === "fr" ? "Etats cles :" : "Key states:"}</strong> {language === "fr" ? "`bookState`, `currentPage`, `turningPage` et `turnDirection` controlent le livre; `neuronsRef` et `impulsesRef` animent le fond." : "`bookState`, `currentPage`, `turningPage` and `turnDirection` control the book; `neuronsRef` and `impulsesRef` animate the background."}</p>
                 <p><strong>{language === "fr" ? "Interaction :" : "Interaction:"}</strong> {language === "fr" ? "`openBook()` enchaine `rotating {'->'} opening {'->'} open`, puis le contenu est rendu depuis le tableau `bookPages`." : "`openBook()` chains `rotating {'->'} opening {'->'} open`, then content is rendered from the `bookPages` array."}</p>
-                <p><strong>{language === "fr" ? "Astuce :" : "Main trick:"}</strong> {language === "fr" ? "sur desktop, les pages sont des overlays `absolute` en pourcentages sur `book-pages.png`; sur mobile, le contenu bascule en carte lisible." : "on desktop, pages are `absolute` percentage-based overlays on `book-pages.png`; on mobile, the content switches to a readable card layout."}</p>
+                <p><strong>{language === "fr" ? "Astuce :" : "Main trick:"}</strong> {language === "fr" ? "sur desktop, les pages sont des overlays `absolute` en pourcentages sur `book-pages.jpg`; sur mobile, le contenu bascule en carte lisible." : "on desktop, pages are `absolute` percentage-based overlays on `book-pages.jpg`; on mobile, the content switches to a readable card layout."}</p>
               </div>
             </motion.div>
           </motion.div>

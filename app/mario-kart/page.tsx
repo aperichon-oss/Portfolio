@@ -215,7 +215,7 @@ export default function MarioKartPage() {
                       className="block h-auto w-full"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
-                    <div className="absolute bottom-[5%] left-1/2 -translate-x-1/2 rounded-full bg-black/65 px-4 py-1 text-[10px] font-semibold text-white shadow-lg backdrop-blur-sm sm:text-xs">
+                    <div className="absolute bottom-[1.6%] left-1/2 -translate-x-1/2 rounded-full bg-black/55 px-4 py-1 text-[10px] font-semibold text-white shadow-lg backdrop-blur-sm sm:text-xs">
                       <span>{language === "fr" ? "← Reculer" : "← Back"}</span>
                       <span className="mx-3 text-white/45">|</span>
                       <span>{language === "fr" ? "Avancer →" : "Forward →"}</span>
@@ -331,7 +331,7 @@ export default function MarioKartPage() {
                     className="block h-auto w-full select-none"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
-                  <div className="absolute bottom-[5%] left-1/2 -translate-x-1/2 rounded-full bg-black/65 px-4 py-1 text-[10px] font-semibold text-white shadow-lg backdrop-blur-sm sm:text-xs">
+                  <div className="absolute bottom-[1.6%] left-1/2 -translate-x-1/2 rounded-full bg-black/55 px-4 py-1 text-[10px] font-semibold text-white shadow-lg backdrop-blur-sm sm:text-xs">
                     <span>{language === "fr" ? "← Reculer" : "← Back"}</span>
                     <span className="mx-3 text-white/45">|</span>
                     <span>{language === "fr" ? "Avancer →" : "Forward →"}</span>
