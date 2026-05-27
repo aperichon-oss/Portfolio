@@ -19,6 +19,7 @@ import {
   Code2,
   Award,
   Languages,
+  ExternalLink,
 } from "lucide-react"
 
 const skills = [
@@ -107,11 +108,13 @@ export default function AboutPage() {
       name: "Dataiku Core Designer",
       issuer: "Dataiku",
       period: language === "fr" ? "Délivrée en janv. 2026" : "Issued Jan. 2026",
+      url: "https://verify.skilljar.com/c/kk5vgimt4vd6",
     },
     {
       name: "No Code - TechAway niv1 (FR)",
       issuer: "DataScientest.com",
       period: language === "fr" ? "Certification No Code" : "No-code certification",
+      url: "https://files.datascientest.com/certification/baebf2f4-beab-4803-9d18-4f83250505f8.pdf",
     },
   ]
 
@@ -231,6 +234,36 @@ export default function AboutPage() {
                 </Card>
               </motion.div>
 
+              {/* Certifications */}
+              <motion.div variants={itemVariants}>
+                <Card className="border-border bg-card p-6">
+                  <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-foreground">
+                    <Award className="h-5 w-5 text-primary" />
+                    {language === "fr" ? "Certifications" : "Certifications"}
+                  </h3>
+                  <div className="space-y-3">
+                    {certifications.map((cert) => (
+                      <a
+                        key={cert.name}
+                        href={cert.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group block rounded-lg border border-border/70 bg-background/40 p-4 transition-colors hover:border-primary/50 hover:bg-primary/10"
+                      >
+                        <div className="flex items-start justify-between gap-3">
+                          <div>
+                            <h4 className="font-medium text-foreground">{cert.name}</h4>
+                            <p className="text-sm text-primary">{cert.issuer}</p>
+                            <p className="mt-1 text-xs text-muted-foreground">{cert.period}</p>
+                          </div>
+                          <ExternalLink className="mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-primary" />
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                </Card>
+              </motion.div>
+
             </motion.div>
 
             {/* Right Column - Details */}
@@ -322,25 +355,6 @@ export default function AboutPage() {
                         </div>
                         <p className="text-sm text-muted-foreground">{edu.school}</p>
                         <p className="text-xs text-muted-foreground">{edu.period}</p>
-                      </div>
-                    ))}
-                  </div>
-                </Card>
-              </motion.div>
-
-              {/* Certifications */}
-              <motion.div variants={itemVariants}>
-                <Card className="border-border bg-card p-6">
-                  <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-foreground">
-                    <Award className="h-5 w-5 text-primary" />
-                    {language === "fr" ? "Certifications" : "Certifications"}
-                  </h3>
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    {certifications.map((cert) => (
-                      <div key={cert.name} className="rounded-lg border border-border/70 bg-background/40 p-4">
-                        <h4 className="font-medium text-foreground">{cert.name}</h4>
-                        <p className="text-sm text-primary">{cert.issuer}</p>
-                        <p className="mt-1 text-xs text-muted-foreground">{cert.period}</p>
                       </div>
                     ))}
                   </div>
