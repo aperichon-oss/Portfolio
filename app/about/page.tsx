@@ -131,6 +131,16 @@ export default function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             className="mb-12 text-center"
           >
+            <div className="mx-auto mb-6 h-32 w-32 overflow-hidden rounded-full border-4 border-primary/30 shadow-lg shadow-primary/20">
+              <Image
+                src={assetPath("/images/profile.jpg")}
+                alt="Aurelie Perichon"
+                width={128}
+                height={128}
+                className="h-full w-full object-cover"
+                priority
+              />
+            </div>
             <Badge className="mb-4 border-primary/30 bg-primary/20 text-primary">
               {t("about.badge")}
             </Badge>
@@ -155,28 +165,6 @@ export default function AboutPage() {
               animate="visible"
               className="space-y-6 lg:col-span-1"
             >
-              {/* Avatar */}
-              <motion.div variants={itemVariants}>
-                <Card className="border-border bg-card p-6">
-                  <div className="mx-auto mb-4 h-32 w-32 overflow-hidden rounded-full border-4 border-primary/30">
-                    <Image
-                      src={assetPath("/images/profile.jpg")}
-                      alt="Aurelie Perichon"
-                      width={128}
-                      height={128}
-                      className="h-full w-full object-cover"
-                      priority
-                    />
-                  </div>
-                  <h2 className="mb-2 text-center text-xl font-bold text-foreground">
-                    Aurelie Perichon
-                  </h2>
-                  <p className="text-center text-sm text-muted-foreground">
-                    MSc AI Applied to Business
-                  </p>
-                </Card>
-              </motion.div>
-
               {/* Contact */}
               <motion.div variants={itemVariants}>
                 <Card className="border-border bg-card p-6">
