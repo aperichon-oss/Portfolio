@@ -18,6 +18,7 @@ import {
   GraduationCap,
   Briefcase,
   Code2,
+  Award,
   Languages,
   Heart,
   Gamepad2,
@@ -33,6 +34,8 @@ const skills = [
   { name: "NoSQL", category: "code" },
   { name: "NoCode", category: "tool" },
   { name: "Power BI", category: "tool" },
+  { name: "Dataiku", category: "tool" },
+  { name: "Google Sheets", category: "tool" },
   { name: "Canva", category: "tool" },
   { name: "Shopify", category: "tool" },
   { name: "Brevo", category: "tool" },
@@ -76,9 +79,21 @@ export default function AboutPage() {
       period: "2024-2025",
       current: false,
     },
+    {
+      degree: language === "fr" ? "Formation commerce et management" : "Business and management training",
+      school: language === "fr" ? "Parcours retail" : "Retail track",
+      period: "2022-2024",
+      current: false,
+    },
   ]
 
   const experience = [
+    {
+      role: language === "fr" ? "Expérience professionnelle" : "Professional experience",
+      company: "Air Liquide",
+      period: language === "fr" ? "Paris et périphérie" : "Paris area",
+      description: language === "fr" ? "Expérience listée sur LinkedIn dans un environnement industriel international." : "Experience listed on LinkedIn in an international industrial environment.",
+    },
     {
       role: language === "fr" ? "Chargée de marketing digital" : "Digital Marketing Manager",
       company: "Olover",
@@ -90,6 +105,19 @@ export default function AboutPage() {
       company: "Carrefour City",
       period: "2022-2024",
       description: language === "fr" ? "Gestion d'équipe, opérations retail, relation client" : "Team management, retail operations, customer relations",
+    },
+  ]
+
+  const certifications = [
+    {
+      name: "Dataiku Core Designer",
+      issuer: "Dataiku",
+      period: language === "fr" ? "Délivrée en janv. 2026" : "Issued Jan. 2026",
+    },
+    {
+      name: "Google Sheets Marketing",
+      issuer: "DataScientest.com",
+      period: language === "fr" ? "Certification LinkedIn" : "LinkedIn certification",
     },
   ]
 
@@ -313,6 +341,25 @@ export default function AboutPage() {
                         <p className="text-sm text-primary">{exp.company}</p>
                         <p className="mb-1 text-xs text-muted-foreground">{exp.period}</p>
                         <p className="text-sm text-muted-foreground">{exp.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                </Card>
+              </motion.div>
+
+              {/* Certifications */}
+              <motion.div variants={itemVariants}>
+                <Card className="border-border bg-card p-6">
+                  <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-foreground">
+                    <Award className="h-5 w-5 text-primary" />
+                    {language === "fr" ? "Certifications" : "Certifications"}
+                  </h3>
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {certifications.map((cert) => (
+                      <div key={cert.name} className="rounded-lg border border-border/70 bg-background/40 p-4">
+                        <h4 className="font-medium text-foreground">{cert.name}</h4>
+                        <p className="text-sm text-primary">{cert.issuer}</p>
+                        <p className="mt-1 text-xs text-muted-foreground">{cert.period}</p>
                       </div>
                     ))}
                   </div>
