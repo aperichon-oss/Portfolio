@@ -231,7 +231,7 @@ const translations: Record<Language, Record<string, string>> = {
     // About Page
     "about.badge": "A propos",
     "about.title": "Aurelie Perichon",
-    "about.subtitle": "Etudiante en MSc AI Applied to Business",
+    "about.subtitle": "Étudiante en MSc AI Applied to Business, je combine une expérience en business development digital, marketing digital et retail avec une spécialisation progressive en data. Mon objectif : transformer les données en décisions utiles, lisibles et orientées impact business.",
     "about.contact": "Contact",
     "about.languages": "Langues",
     "about.french": "Francais",
@@ -485,7 +485,7 @@ const translations: Record<Language, Record<string, string>> = {
     // About Page
     "about.badge": "About",
     "about.title": "Aurelie Perichon",
-    "about.subtitle": "MSc AI Applied to Business Student",
+    "about.subtitle": "As an MSc AI Applied to Business student, I combine experience in digital business development, digital marketing and retail with a growing specialization in data. My goal is to turn data into clear, useful and business-oriented decisions.",
     "about.contact": "Contact",
     "about.languages": "Languages",
     "about.french": "French",

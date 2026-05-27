@@ -261,16 +261,6 @@ export default function AboutPage() {
               animate="visible"
               className="space-y-6 lg:col-span-2"
             >
-              {/* Profile Summary */}
-              <motion.div variants={itemVariants}>
-                <Card className="border-border bg-card p-6">
-                  <h3 className="mb-4 text-lg font-semibold text-foreground">{t("about.profile")}</h3>
-                  <p className="leading-relaxed text-muted-foreground">
-                    {t("about.profileText")}
-                  </p>
-                </Card>
-              </motion.div>
-
               {/* Skills */}
               <motion.div variants={itemVariants}>
                 <Card className="border-border bg-card p-6">
