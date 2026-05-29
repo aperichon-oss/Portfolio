@@ -130,7 +130,7 @@ export default function HomePage() {
                     src={assetPath("/images/home/personnage-interrogatif.png")}
                       alt=""
                       aria-hidden="true"
-                      className="block w-52 max-w-none origin-[23%_82%] -translate-x-[49%] -translate-y-[62%] rotate-[4deg] sm:w-64"
+                      className="block w-44 max-w-none origin-[23%_82%] -translate-x-[24%] -translate-y-[66%] rotate-[4deg] sm:w-64 sm:-translate-x-[49%] sm:-translate-y-[62%]"
                     />
                 </span>
                 <span className="relative z-10">{t("home.cta")}</span>
