@@ -119,7 +119,7 @@ export default function HomePage() {
             </motion.p>
 
             {/* CTA */}
-            <motion.div variants={itemVariants} className="pt-24 sm:pt-32">
+            <motion.div variants={itemVariants} className="pt-40 sm:pt-48 md:pt-56">
               <Button
                 size="lg"
                 onClick={scrollToProjects}
@@ -130,7 +130,7 @@ export default function HomePage() {
                     src={assetPath("/images/home/personnage-interrogatif.png")}
                       alt=""
                       aria-hidden="true"
-                      className="block w-52 max-w-none origin-[23%_82%] -translate-x-[23%] -translate-y-[82%] rotate-[4deg] sm:w-64"
+                      className="block w-52 max-w-none origin-[23%_82%] -translate-x-[49%] -translate-y-[62%] rotate-[4deg] sm:w-64"
                     />
                 </span>
                 <span className="relative z-10">{t("home.cta")}</span>
