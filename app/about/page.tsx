@@ -173,10 +173,10 @@ export default function AboutPage() {
               variants={containerVariants}
               initial="hidden"
               animate="visible"
-              className="order-2 space-y-6 lg:order-1 lg:col-span-1"
+              className="order-2 flex flex-col gap-6 lg:order-1 lg:col-span-1"
             >
               {/* Contact */}
-              <motion.div variants={itemVariants}>
+              <motion.div variants={itemVariants} className="order-3">
                 <Card className="border-border bg-card p-6">
                   <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-foreground">
                     <Mail className="h-5 w-5 text-primary" />
@@ -213,7 +213,7 @@ export default function AboutPage() {
               </motion.div>
 
               {/* Languages */}
-              <motion.div variants={itemVariants}>
+              <motion.div variants={itemVariants} className="order-1">
                 <Card className="border-border bg-card p-6">
                   <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-foreground">
                     <Languages className="h-5 w-5 text-primary" />
@@ -233,7 +233,7 @@ export default function AboutPage() {
               </motion.div>
 
               {/* Certifications */}
-              <motion.div variants={itemVariants}>
+              <motion.div variants={itemVariants} className="order-2">
                 <Card className="border-border bg-card p-6">
                   <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-foreground">
                     <Award className="h-5 w-5 text-primary" />

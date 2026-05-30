@@ -33,6 +33,7 @@ export function PortfolioChatbot() {
     if (pathname?.startsWith("/eugenia-school")) return "eugenia"
     if (pathname?.startsWith("/zigzag")) return "zigzag"
     if (pathname?.startsWith("/mario-kart")) return "mario"
+    if (pathname?.startsWith("/about")) return "about"
     return null
   }, [pathname])
 
@@ -52,7 +53,11 @@ export function PortfolioChatbot() {
             tech: "Les stacks principales couvrent Next.js, React, TypeScript, Tailwind CSS, Supabase, FastAPI, Python, LangChain, FAISS, BM25, Recharts, Leaflet et Framer Motion selon les projets.",
             contact: "Tu peux contacter Aurelie par email : aurelieperichon@gmail.com. Les liens GitHub et LinkedIn sont dans le header et le footer.",
             language: "Le portfolio est bilingue. Le bouton FR/EN dans le header change les textes entre francais et anglais.",
-            about: "Aurelie Perichon est etudiante en MSc AI Applied to Business. Son parcours combine business development digital chez Air Liquide, marketing digital chez Olover, management retail chez Carrefour City et une specialisation data/IA. Ses competences utiles couvrent Python, SQL, data visualization, Power BI, Dataiku, Shopify, Brevo, CRM et Google Sheets.",
+            about: "Aurelie Perichon est etudiante en MSc AI Applied to Business, avec un profil business et technique en IA et data. Elle conçoit des solutions pour clarifier l'analyse, automatiser les workflows utiles et soutenir la decision.",
+            aboutSkills: "Ses competences sont organisees en trois axes : IA & data (Python, SQL, Machine Learning, data visualization, IA agentique, SEO/GEO), automatisation & agents (Automatisation, Dust, Make), puis outils & plateformes (Dataiku, Tableau, Power BI, Cursor, Google Sheets, Shopify, Brevo).",
+            aboutExperience: "Son experience recente couvre Business Developer Digital & IT Products chez Air Liquide, marketing digital chez Olover, puis management operationnel chez Carrefour City. Le fil rouge est l'articulation entre besoins business, outils digitaux, data et execution terrain.",
+            aboutEducation: "Formation : MSc AI Applied to Business a Eugenia School, Bachelor Marketing Digital, IA et Data a l'INSEEC, puis BTS Management Commercial Operationnel au CFA AFIPE.",
+            aboutCertifications: "Certifications affichees : Dataiku Core Designer et No Code - TechAway niv1. Les cartes de certification sur la page A propos ouvrent les preuves officielles.",
             fallback: "Je peux repondre sur les projets, les technologies, les liens, le contact, la navigation ou le fonctionnement du portfolio.",
           }
         : {
@@ -68,7 +73,11 @@ export function PortfolioChatbot() {
             tech: "Main stacks include Next.js, React, TypeScript, Tailwind CSS, Supabase, FastAPI, Python, LangChain, FAISS, BM25, Recharts, Leaflet and Framer Motion depending on the project.",
             contact: "You can contact Aurelie by email: aurelieperichon@gmail.com. GitHub and LinkedIn links are available in the header and footer.",
             language: "The portfolio is bilingual. The FR/EN button in the header switches all text between French and English.",
-            about: "Aurelie Perichon is an MSc AI Applied to Business student. Her background combines digital business development at Air Liquide, digital marketing at Olover, retail management at Carrefour City and a growing data/AI specialization. Key skills include Python, SQL, data visualization, Power BI, Dataiku, Shopify, Brevo, CRM and Google Sheets.",
+            about: "Aurelie Perichon is an MSc AI Applied to Business student with a business and technical profile in AI and data. She designs solutions that make analysis clearer, automate useful workflows and support decision-making.",
+            aboutSkills: "Her skills are grouped into three areas: AI & data (Python, SQL, Machine Learning, data visualization, Agentic AI, SEO/GEO), automation & agents (Automation, Dust, Make), and tools & platforms (Dataiku, Tableau, Power BI, Cursor, Google Sheets, Shopify, Brevo).",
+            aboutExperience: "Her recent experience includes Business Developer Digital & IT Products at Air Liquide, digital marketing at Olover, and operational management at Carrefour City. The common thread is connecting business needs, digital tools, data and execution.",
+            aboutEducation: "Education: MSc AI Applied to Business at Eugenia School, Bachelor in Digital Marketing, AI and Data at INSEEC, and BTS Commercial Operations Management at CFA AFIPE.",
+            aboutCertifications: "Displayed certifications: Dataiku Core Designer and No Code - TechAway niv1. The certification cards on the About page open the official proof links.",
             fallback: "I can answer questions about projects, technologies, links, contact, navigation or how the portfolio works.",
           },
     [language],
@@ -82,6 +91,7 @@ export function PortfolioChatbot() {
       eugenia: copy.eugenia,
       zigzag: copy.zigzag,
       mario: copy.mario,
+      about: copy.about,
     }
 
     if (
@@ -103,10 +113,14 @@ export function PortfolioChatbot() {
     if (q.includes("eugenia") || q.includes("seo") || q.includes("geo")) return copy.eugenia
     if (q.includes("zigzag") || q.includes("dessin") || q.includes("drawing") || q.includes("gartic")) return copy.zigzag
     if (q.includes("mario") || q.includes("kart") || q.includes("scraping")) return copy.mario
+    if (q.includes("competence") || q.includes("skill") || q.includes("dataiku") || q.includes("dust") || q.includes("make") || q.includes("tableau") || q.includes("cursor")) return copy.aboutSkills
+    if (q.includes("experience") || q.includes("air liquide") || q.includes("olover") || q.includes("carrefour")) return copy.aboutExperience
+    if (q.includes("formation") || q.includes("education") || q.includes("msc") || q.includes("bachelor") || q.includes("bts")) return copy.aboutEducation
+    if (q.includes("certification") || q.includes("certificat") || q.includes("certificate") || q.includes("dataiku core") || q.includes("techaway")) return copy.aboutCertifications
     if (q.includes("tech") || q.includes("stack") || q.includes("outil") || q.includes("library") || q.includes("librairie")) return copy.tech
     if (q.includes("contact") || q.includes("email") || q.includes("mail") || q.includes("linkedin") || q.includes("github")) return copy.contact
     if (q.includes("anglais") || q.includes("english") || q.includes("francais") || q.includes("french") || q.includes("langue")) return copy.language
-    if (q.includes("a propos") || q.includes("about") || q.includes("aurelie") || q.includes("parcours")) return copy.about
+    if (q.includes("a propos") || q.includes("about") || q.includes("aurelie") || q.includes("parcours") || q.includes("profil") || q.includes("profile")) return copy.about
     if (q.includes("projet") || q.includes("project") || q.includes("ordre") || q.includes("order")) return currentProject ? projectAnswers[currentProject] : copy.projects
 
     return currentProject ? `${projectAnswers[currentProject]}\n\n${copy.fallback}` : copy.fallback
