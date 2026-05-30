@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import { GraduationCap, ExternalLink, Github, DoorOpen, ChevronRight, ArrowDown } from "lucide-react"
@@ -15,6 +15,7 @@ export default function EugeniaSchoolPage() {
   const { t, language } = useLanguage()
   const [currentStep, setCurrentStep] = useState(0)
   const [showEasterEgg, setShowEasterEgg] = useState(false)
+  const sceneScrollRef = useRef<HTMLDivElement>(null)
 
   // Steps configuration - hotspot positions match the black dots in images
   const steps = [
@@ -106,6 +107,23 @@ export default function EugeniaSchoolPage() {
 
   const currentStepData = steps[currentStep]
 
+  useEffect(() => {
+    const scene = sceneScrollRef.current
+    if (!scene) return
+
+    const centerScene = () => {
+      scene.scrollLeft = Math.max(0, (scene.scrollWidth - scene.clientWidth) / 2)
+    }
+
+    const frame = requestAnimationFrame(centerScene)
+    window.addEventListener("resize", centerScene)
+
+    return () => {
+      cancelAnimationFrame(frame)
+      window.removeEventListener("resize", centerScene)
+    }
+  }, [currentStep])
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -122,13 +140,16 @@ export default function EugeniaSchoolPage() {
           >
 
             {/* Scene complète : image + hotspots + contenu */}
-            <div className="w-full overflow-x-auto overflow-y-hidden bg-black overscroll-x-contain [-webkit-overflow-scrolling:touch] md:overflow-x-visible">
-            <div className="relative mx-0 aspect-[16/9] w-[max(100vw,880px)] max-w-none bg-black md:mx-auto md:w-full md:max-w-[1600px] overflow-hidden">
+            <div
+              ref={sceneScrollRef}
+              className="h-[calc(100vh-4rem)] w-full overflow-x-auto overflow-y-hidden bg-black overscroll-x-contain [-webkit-overflow-scrolling:touch]"
+            >
+            <div className="relative mx-auto aspect-[16/9] h-full min-w-[900px] max-w-none overflow-hidden bg-black md:min-w-[calc((100vh-4rem)*16/9)]">
               <Image
                 src={currentStepData.image}
                 alt={currentStepData.title}
                 fill
-                className="object-contain"
+                className="object-cover"
                 priority
               />
 
