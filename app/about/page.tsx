@@ -4,7 +4,6 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card } from "@/components/ui/card"
 import { AnimatedBackground } from "@/components/animated-background"
@@ -359,33 +358,6 @@ export default function AboutPage() {
                 </Card>
               </motion.div>
 
-              {/* CTA */}
-              <motion.div variants={itemVariants}>
-                <Card className="border-primary/30 bg-gradient-to-br from-primary/20 to-accent/20 p-6">
-                  <div className="text-center">
-                    <h3 className="mb-2 text-xl font-bold text-foreground">
-                      {t("about.ctaTitle")}
-                    </h3>
-                    <p className="mb-4 text-muted-foreground">
-                      {t("about.ctaDescription")}
-                    </p>
-                    <div className="flex flex-wrap justify-center gap-4">
-                      <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90">
-                        <a href="mailto:aurelieperichon@gmail.com">
-                          <Mail className="mr-2 h-4 w-4" />
-                          {t("about.contactMe")}
-                        </a>
-                      </Button>
-                      <Button asChild variant="outline">
-                        <a href="https://www.linkedin.com/in/aurélie-perichon-4451122b9/" target="_blank" rel="noopener noreferrer">
-                          <Linkedin className="mr-2 h-4 w-4" />
-                          LinkedIn
-                        </a>
-                      </Button>
-                    </div>
-                  </div>
-                </Card>
-              </motion.div>
             </motion.div>
           </div>
         </div>
