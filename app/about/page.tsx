@@ -97,7 +97,7 @@ export default function AboutPage() {
       role: "Business Developer Digital & IT Products",
       company: "Air Liquide",
       period: language === "fr" ? "Depuis sept. 2025 - Alternance" : "Since Sep. 2025 - Apprenticeship",
-      description: language === "fr" ? "Développement business sur des produits digitaux et IT dans un environnement industriel international." : "Business development for digital and IT products in an international industrial environment.",
+      description: language === "fr" ? "Développement de solutions autour de l'IA et de la data pour aider les équipes Digital & IT dans leur travail." : "Development of AI and data solutions to support Digital & IT teams in their work.",
     },
     {
       role: language === "fr" ? "Chargée de marketing digital" : "Digital Marketing Specialist",

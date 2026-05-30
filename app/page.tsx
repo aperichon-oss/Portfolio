@@ -81,6 +81,7 @@ export default function HomePage() {
       glowClass: "glow-mario",
       characterImage: "/images/project-characters/personnage-mario-kart.png",
       characterAlt: "Personnage Mario Kart",
+      characterClassName: "h-24 w-40 sm:h-28 sm:w-48",
     },
   ]
 

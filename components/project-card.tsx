@@ -17,6 +17,7 @@ interface ProjectCardProps {
   external?: boolean
   characterImage?: string
   characterAlt?: string
+  characterClassName?: string
 }
 
 export function ProjectCard({
@@ -30,6 +31,7 @@ export function ProjectCard({
   external = false,
   characterImage,
   characterAlt = "",
+  characterClassName = "",
 }: ProjectCardProps) {
   const CardContent = (
     <div className={`relative p-6 rounded-2xl bg-card border border-border overflow-hidden transition-all duration-300 group-hover:border-primary/50 group-hover:${glowClass}`}>
@@ -40,7 +42,7 @@ export function ProjectCard({
           src={assetPath(characterImage)}
           alt={characterAlt}
           aria-hidden={!characterAlt}
-          className="pointer-events-none absolute right-4 top-4 z-0 h-20 w-32 object-contain object-right-top opacity-100 transition-transform duration-300 group-hover:scale-105 sm:h-24 sm:w-40"
+          className={`pointer-events-none absolute right-4 top-4 z-0 h-20 w-32 object-contain object-right-top opacity-100 transition-transform duration-300 group-hover:scale-105 sm:h-24 sm:w-40 ${characterClassName}`}
         />
       )}
       
