@@ -22,20 +22,6 @@ import {
   ExternalLink,
 } from "lucide-react"
 
-const skills = [
-  { name: "Python", category: "code" },
-  { name: "SQL", category: "code" },
-  { name: "Data visualization", category: "code" },
-  { name: "Machine Learning", category: "code" },
-  { name: "Power BI", category: "tool" },
-  { name: "Dataiku", category: "tool" },
-  { name: "Google Sheets", category: "tool" },
-  { name: "NoCode", category: "tool" },
-  { name: "CRM", category: "tool" },
-  { name: "Shopify", category: "tool" },
-  { name: "Brevo", category: "tool" },
-]
-
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -60,6 +46,31 @@ const itemVariants = {
 
 export default function AboutPage() {
   const { t, language } = useLanguage()
+
+  const skillGroups = [
+    {
+      title: language === "fr" ? "IA & data" : "AI & data",
+      category: "code",
+      items: [
+        "Python",
+        "SQL",
+        "Machine Learning",
+        "Data visualization",
+        language === "fr" ? "IA agentique" : "Agentic AI",
+        "SEO/GEO",
+      ],
+    },
+    {
+      title: language === "fr" ? "Automatisation & agents" : "Automation & agents",
+      category: "code",
+      items: [language === "fr" ? "Automatisation" : "Automation", "Dust", "Make"],
+    },
+    {
+      title: language === "fr" ? "Outils & plateformes" : "Tools & platforms",
+      category: "tool",
+      items: ["Dataiku", "Tableau", "Power BI", "Cursor", "Google Sheets", "Shopify", "Brevo"],
+    },
+  ]
 
   const education = [
     {
@@ -163,7 +174,7 @@ export default function AboutPage() {
               variants={containerVariants}
               initial="hidden"
               animate="visible"
-              className="space-y-6 lg:col-span-1"
+              className="order-2 space-y-6 lg:order-1 lg:col-span-1"
             >
               {/* Contact */}
               <motion.div variants={itemVariants}>
@@ -259,7 +270,7 @@ export default function AboutPage() {
               variants={containerVariants}
               initial="hidden"
               animate="visible"
-              className="space-y-6 lg:col-span-2"
+              className="order-1 space-y-6 lg:order-2 lg:col-span-2"
             >
               {/* Skills */}
               <motion.div variants={itemVariants}>
@@ -268,18 +279,27 @@ export default function AboutPage() {
                     <Code2 className="h-5 w-5 text-primary" />
                     {t("about.skills")}
                   </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {skills.map((skill) => (
-                      <Badge
-                        key={skill.name}
-                        className={
-                          skill.category === "code"
-                            ? "border-primary/30 bg-primary/20 text-primary"
-                            : "border-accent/30 bg-accent/20 text-accent"
-                        }
-                      >
-                        {skill.name}
-                      </Badge>
+                  <div className="space-y-5">
+                    {skillGroups.map((group) => (
+                      <div key={group.title}>
+                        <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                          {group.title}
+                        </h4>
+                        <div className="flex flex-wrap gap-2">
+                          {group.items.map((skill) => (
+                            <Badge
+                              key={skill}
+                              className={
+                                group.category === "code"
+                                  ? "border-primary/30 bg-primary/20 text-primary"
+                                  : "border-accent/30 bg-accent/20 text-accent"
+                              }
+                            >
+                              {skill}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
                     ))}
                   </div>
                 </Card>
