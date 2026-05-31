@@ -131,7 +131,7 @@ export default function HomePage() {
                     src={assetPath("/images/home/personnage-interrogatif.png")}
                       alt=""
                       aria-hidden="true"
-                      className="block w-40 max-w-none -translate-x-[46%] max-[380px]:w-36 max-[380px]:-translate-x-[40%] sm:w-64 sm:-translate-x-[49%]"
+                      className="block w-40 max-w-none -translate-x-[46%] max-[380px]:w-36 max-[380px]:-translate-x-[40%] min-[480px]:max-sm:w-36 min-[480px]:max-sm:-translate-x-[72%] sm:w-64 sm:-translate-x-[49%]"
                     />
                 </span>
                 <span className="relative z-10">{t("home.cta")}</span>
