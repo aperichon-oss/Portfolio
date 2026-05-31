@@ -112,14 +112,22 @@ export default function EugeniaSchoolPage() {
     if (!scene) return
 
     const centerScene = () => {
-      scene.scrollLeft = Math.max(0, (scene.scrollWidth - scene.clientWidth) / 2)
+      scene.scrollTo({
+        left: Math.max(0, (scene.scrollWidth - scene.clientWidth) / 2),
+        behavior: "auto",
+      })
     }
 
-    const frame = requestAnimationFrame(centerScene)
+    const frame = requestAnimationFrame(() => {
+      centerScene()
+      requestAnimationFrame(centerScene)
+    })
+    const timeout = window.setTimeout(centerScene, 160)
     window.addEventListener("resize", centerScene)
 
     return () => {
       cancelAnimationFrame(frame)
+      window.clearTimeout(timeout)
       window.removeEventListener("resize", centerScene)
     }
   }, [currentStep])
@@ -142,14 +150,14 @@ export default function EugeniaSchoolPage() {
             {/* Scene complète : image + hotspots + contenu */}
             <div
               ref={sceneScrollRef}
-              className="h-[calc(100vh-4rem)] w-full overflow-x-auto overflow-y-hidden bg-black overscroll-x-contain [-webkit-overflow-scrolling:touch]"
+              className="h-[calc(100vh-4rem)] w-full overflow-x-auto overflow-y-hidden bg-black overscroll-x-contain [-webkit-overflow-scrolling:touch] md:h-auto md:overflow-x-visible"
             >
-            <div className="relative mx-auto aspect-[16/9] h-full min-w-[900px] max-w-none overflow-hidden bg-black md:min-w-[calc((100vh-4rem)*16/9)]">
+            <div className="relative mx-0 aspect-[16/9] h-full w-[calc((100vh-4rem)*16/9)] min-w-[900px] max-w-none overflow-hidden bg-black md:mx-auto md:h-auto md:w-full md:min-w-0 md:max-w-[1600px]">
               <Image
                 src={currentStepData.image}
                 alt={currentStepData.title}
                 fill
-                className="object-cover"
+                className="object-contain"
                 priority
               />
 
@@ -422,7 +430,7 @@ export default function EugeniaSchoolPage() {
                   initial={{ opacity: 0, y: -4 }}
                   animate={{ opacity: [0.35, 0.75, 0.35], y: [0, 8, 0] }}
                   transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-                  className={`absolute bottom-5 left-1/2 z-40 -translate-x-1/2 rounded-full border border-white/15 bg-black/20 p-2 text-white/80 backdrop-blur-sm ${currentStep === 4 ? "min-[1400px]:hidden" : "xl:hidden"}`}
+                  className={`absolute bottom-20 left-1/2 z-40 -translate-x-1/2 rounded-full border border-white/15 bg-black/20 p-2 text-white/80 backdrop-blur-sm sm:bottom-8 ${currentStep === 4 ? "min-[1400px]:hidden" : "xl:hidden"}`}
                   aria-hidden="true"
                 >
                   <ArrowDown className="h-5 w-5" />
