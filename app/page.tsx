@@ -126,7 +126,7 @@ export default function HomePage() {
                 onClick={scrollToProjects}
                 className="group relative overflow-visible bg-primary hover:bg-primary/90 text-primary-foreground px-10 py-8 text-xl sm:px-12 sm:py-9 sm:text-2xl"
               >
-                <span className="pointer-events-none absolute bottom-[calc(100%-5rem)] left-0 z-20 min-[480px]:max-sm:bottom-[calc(100%-4.6rem)] sm:bottom-[calc(100%-8rem)]">
+                <span className="pointer-events-none absolute bottom-[calc(100%-5rem)] left-0 z-20 min-[480px]:max-sm:bottom-[calc(100%-3.5rem)] sm:bottom-[calc(100%-8rem)]">
                     <img
                     src={assetPath("/images/home/personnage-interrogatif.png")}
                       alt=""
