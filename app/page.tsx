@@ -126,12 +126,12 @@ export default function HomePage() {
                 onClick={scrollToProjects}
                 className="group relative overflow-visible bg-primary hover:bg-primary/90 text-primary-foreground px-10 py-8 text-xl sm:px-12 sm:py-9 sm:text-2xl"
               >
-                <span className="pointer-events-none absolute bottom-[calc(100%-0.35rem)] left-3 z-20 sm:bottom-[calc(100%-0.55rem)] sm:left-0">
+                <span className="pointer-events-none absolute bottom-[calc(100%-2.4rem)] left-0 z-20 sm:bottom-[calc(100%-3rem)]">
                     <img
                     src={assetPath("/images/home/personnage-interrogatif.png")}
                       alt=""
                       aria-hidden="true"
-                      className="block w-40 max-w-none -translate-x-[18%] max-[380px]:w-36 max-[380px]:-translate-x-[10%] sm:w-64 sm:-translate-x-[49%]"
+                      className="block w-40 max-w-none -translate-x-[36%] max-[380px]:w-36 max-[380px]:-translate-x-[30%] sm:w-64 sm:-translate-x-[49%]"
                     />
                 </span>
                 <span className="relative z-10">{t("home.cta")}</span>
