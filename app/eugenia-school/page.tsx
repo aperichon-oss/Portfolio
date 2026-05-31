@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import { GraduationCap, ExternalLink, Github, DoorOpen, ChevronRight, ArrowDown } from "lucide-react"
@@ -107,30 +107,30 @@ export default function EugeniaSchoolPage() {
 
   const currentStepData = steps[currentStep]
 
-  useEffect(() => {
+  const centerScene = useCallback(() => {
     const scene = sceneScrollRef.current
     if (!scene) return
 
-    const centerScene = () => {
-      scene.scrollTo({
-        left: Math.max(0, (scene.scrollWidth - scene.clientWidth) / 2),
-        behavior: "auto",
-      })
-    }
+    scene.scrollLeft = Math.max(0, (scene.scrollWidth - scene.clientWidth) / 2)
+  }, [])
+
+  useEffect(() => {
+    const scene = sceneScrollRef.current
+    if (!scene) return
 
     const frame = requestAnimationFrame(() => {
       centerScene()
       requestAnimationFrame(centerScene)
     })
-    const timeout = window.setTimeout(centerScene, 160)
+    const timeouts = [80, 180, 360, 700].map((delay) => window.setTimeout(centerScene, delay))
     window.addEventListener("resize", centerScene)
 
     return () => {
       cancelAnimationFrame(frame)
-      window.clearTimeout(timeout)
+      timeouts.forEach((timeout) => window.clearTimeout(timeout))
       window.removeEventListener("resize", centerScene)
     }
-  }, [currentStep])
+  }, [currentStep, centerScene])
 
   return (
     <div className="min-h-screen bg-background">
@@ -158,6 +158,7 @@ export default function EugeniaSchoolPage() {
                 alt={currentStepData.title}
                 fill
                 className="object-contain"
+                onLoad={centerScene}
                 priority
               />
 
@@ -430,7 +431,7 @@ export default function EugeniaSchoolPage() {
                   initial={{ opacity: 0, y: -4 }}
                   animate={{ opacity: [0.35, 0.75, 0.35], y: [0, 8, 0] }}
                   transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-                  className={`absolute bottom-20 left-1/2 z-40 -translate-x-1/2 rounded-full border border-white/15 bg-black/20 p-2 text-white/80 backdrop-blur-sm sm:bottom-8 ${currentStep === 4 ? "min-[1400px]:hidden" : "xl:hidden"}`}
+                  className={`absolute bottom-20 left-1/2 z-40 -translate-x-1/2 rounded-full border border-[#FCBA35]/70 bg-[#FCBA35]/90 p-2.5 text-[#8B2346] shadow-[0_0_22px_rgba(252,186,53,0.42)] backdrop-blur-sm sm:bottom-8 ${currentStep === 4 ? "min-[1400px]:hidden" : "xl:hidden"}`}
                   aria-hidden="true"
                 >
                   <ArrowDown className="h-5 w-5" />
